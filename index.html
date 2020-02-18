@@ -3,20 +3,38 @@
     <head>
         <title>Mountain Comparison</title>
         <meta charset="utf-8">
-        <!-- <meta viewport> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
         <style>
-            h1,h2 {
+            h1, h2, p {
                 text-align: center;
             }
+
+            body{
+                background-image: url("assets/mountain_background_16_9.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                position: relative;
+            }
+
+            .overlay {
+                background-color: rgba(105, 105, 105, .75);
+                width: 90vw;
+                height:90vh;
+                margin:auto;
+
+            }
+
         </style>
     </head>
 
     <body>
-        <h1>Where should I go?</h1>
-        <h2>Compare conditions at different mountains</h2>
-        <div><a href="">Get started</a></div>
-        <div><a href="">How it works</a><div>
+        <div class="overlay">
+            <h1>Where should I go?</h1>
+            <h2>Compare conditions at different mountains</h2>
+            <div><p><a href="compare/index.html">Get started</a></p></div>
+            <div><p><a href="how_it_works/index.html">How it works</a></p><div>
+        </div>
     </body>
 </html>
