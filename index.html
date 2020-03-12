@@ -4,37 +4,41 @@
         <title>Mountain Comparison</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+        <link href="assets/common.css" rel="stylesheet">
+
 
 
         <style>
-            h1, h2, p {
+            h1, h3, p {
                 text-align: center;
             }
 
-            body{
-                background-image: url("assets/mountain_background_16_9.jpg");
-                background-size: cover;
-                background-repeat: no-repeat;
-                position: relative;
+            h1 {
+                font-size: 10vh;
             }
 
-            .overlay {
-                background-color: rgba(105, 105, 105, .75);
-                width: 90vw;
-                height:90vh;
-                margin:auto;
 
+            .text-box {
+                margin: auto;
+                background-color:rgba(255,255,255,.5);
+                width:fit-content;
+                height: fit-content;
+                padding: 10%;
+                border:5px solid transparent;
+                border-radius: 25px;
+                
             }
 
         </style>
     </head>
 
-    <body>
-        <div class="overlay">
+    <body class="overlay">
+        <div class="text-box">
             <h1>Where should I go?</h1>
-            <h2>Compare conditions at different mountains</h2>
+            <h3>Compare conditions at different mountains</h3>
             <div><p><a href="compare/index.html">Get started</a></p></div>
-            <div><p><a href="how_it_works/index.html">How it works</a></p><div>
+            <div><p><a href="how_it_works/index.html">How it works</a></p></div>
         </div>
     </body>
 </html>
