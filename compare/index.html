@@ -10,31 +10,12 @@
         <title>Compare Mountains</title>
         <link href="../assets/common.css" rel="stylesheet">
         <script src="../assets/passMountains.js"></script>
+        <script src="apk.js"></script>
 
         <style>
-            .mountain-box{
-                background-color: rgba(230, 228, 228, .75);
-                border-radius: 5px;
-                padding: 10px;
-                margin: 10px 0px;
-                overflow: auto;
-                
-            }
 
-
-            .drop-label {
-                width:5vw;
-                float:left;
-                text-align: right;
-                font-size: 14px;
-            }
-            #pass-selector {
-                background-color: rgba(230, 228, 228, .75);
-                border-radius: 5px;
-                padding: 5px;
-                overflow: auto; 
-                float: right;
-                color: black;
+            #add-box {
+                clear:both;
             }
 
             #add-button {
@@ -42,22 +23,79 @@
                 clear: both;
             }
 
+            .box-content {
+                float: left;
+                width: 80%;
+            }
+
+            .close-button {
+                float: right;
+                margin-right: 5px;
+                padding: 2px 5px;
+            }
+
             .date-box {
                 margin: 5px 0px;
+            }
+
+            .drop-label {
+                width:7vw;
+                text-align: right;
+                font-size: 14px;
+                overflow: visible;
+                display: block;
+            }
+
+            .flex-container{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .go-button {
+                margin-top: 5px;
+                margin-left: 6vw;
             }
 
             .gray {
                 color: gray;
             }
 
-            .close-button {
-                float: right;
-                margin-right: 5px;
+            .label-div{
+                float: left;
+                width: 7vw;
             }
 
-            .box-content {
-                float: left;
-                width: 30%;
+            .menu {
+                margin-top: 5vh;
+                margin-bottom: 10px;
+            }
+
+            .mountain-box{
+                background-color: rgba(230, 228, 228, .8);
+                border-radius: 5px;
+                padding: 10px;
+                margin: 10px 0px;
+                overflow: auto;
+                
+            }
+
+            .mtn-select{
+                margin-top:5px;
+                xdisplay: block;
+            }
+
+            #pass-selector {
+                background-color: rgba(230, 228, 228, .8);
+                border-radius: 5px;
+                padding: 5px;
+                xoverflow: auto; 
+                xfloat: right;
+                color: black;
+            }
+
+            .region-select{
+                display: inline; 
             }
 
             #right-align{
@@ -66,28 +104,30 @@
                 margin-right: 0vw;
             }
 
-            .mtn-select{
-                margin-top:5px;
-            }
-            #add-box {
-                clear:both;
-            }
-
-            .menu {
-                margin-top: 5vh;
-                margin-bottom: 10px;
-            }
-
-            .go-button {
-                margin-top: 5px;
-            }
-
             select{
                 border-radius: 5px;
                 margin-left: 5px;
             }
   
+@media screen and (max-width: 800px) {
+    .drop-label {
+                width:17vw;
+                text-align: right;
+                font-size: 14px;
+                overflow: visible;
+                display: block;
+            }
 
+            .go-button {
+                margin-top: 5px;
+                margin-left: 15.5vw;
+            }
+
+            .label-div{
+                float: left;
+                width: 17vw;
+            }
+}
 
         </style>
 
@@ -95,8 +135,7 @@
             let i = 0;
             let pass = 'epic';
 
-            document.addEventListener('DOMContentLoaded', (event) => {
-                
+            document.addEventListener('DOMContentLoaded', (event) => {                
                 
                 let pass_selected = document.getElementById('pass-selector');
 
@@ -120,8 +159,10 @@
 
                 });
 
-            });
+                
 
+            });
+                getDates();
                 addEmptyBox();
                 
                 let add_btn = document.getElementById('add-button');
@@ -372,10 +413,14 @@
                 let region_select = document.createElement("select");
                 let region = "region_" + i;
                 region_select.setAttribute("id", region);
+                region_select.setAttribute("class", "region-select");
+                let regLabelDiv = document.createElement("div");
+                regLabelDiv.setAttribute("class","label-div");
                 let region_label = document.createElement("label");
                 region_label.setAttribute("for", region);
                 region_label.setAttribute("class", "drop-label");
                 region_label.innerText = "Region: ";
+                regLabelDiv.appendChild(region_label);
 
                 let option_east = document.createElement("option");
                 option_east.innerText = 'East';
@@ -396,10 +441,13 @@
                 let mountain = "mountain_" + i;
                 mtn_select.setAttribute("id", mountain);
                 mtn_select.setAttribute('class', 'mtn-select');
+                let mtnLabelDiv = document.createElement("div");
+                mtnLabelDiv.setAttribute("class","label-div");
                 let mtn_label = document.createElement("label");
                 mtn_label.setAttribute("for", mountain);
                 mtn_label.setAttribute('class', 'mtn-select drop-label');
                 mtn_label.innerText = "Mountain: ";
+                mtnLabelDiv.appendChild(mtn_label);
 
                 mountain_fill(mtn_select, 'East');
 
@@ -424,9 +472,9 @@
                 }
 
 
-                blankDiv1.appendChild(region_label);
+                blankDiv1.appendChild(regLabelDiv);
                 blankDiv1.appendChild(region_select);
-                blankDiv2.appendChild(mtn_label);
+                blankDiv2.appendChild(mtnLabelDiv);
                 blankDiv2.appendChild(mtn_select);
 
                 newBoxContent.appendChild(blankDiv1);
@@ -463,10 +511,76 @@
                     console.log(passMountains[mtn_select.value]["zipcode"]);
 
                     newMtnBox.removeChild(newBoxContent);
+                    requestWeather(passMountains[mtn_select.value]["zipcode"]);
                 });
                 
+                function requestWeather(zipcode){
+                    let requestURL = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${APIKEY}`;
+                    let request = new XMLHttpRequest();
+                    request.open('GET', requestURL);
+                    //request.withCredentials = true;
+                    request.responseType = 'json';
+                    request.send();
+
+                    request.onload = function(){
+                        const weather = request.response;
+                        console.log(weather);
+                    }
+                }
 
             }
+
+            function getDates(){
+                    dateSelect = document.getElementById('date');
+                    var date1 = new Date();
+                    var date2 = new Date();
+                    var date3 = new Date();
+                    var date4 = new Date();
+                    var date5 = new Date();
+                    date2.setDate(date1.getDate() + 1);
+                    date3.setDate(date1.getDate() + 2);
+                    date4.setDate(date1.getDate() + 3);
+                    date5.setDate(date1.getDate() + 4);
+                    console.log(date1.toLocaleDateString());
+                    console.log(date2.toLocaleDateString());
+                    console.log(date3.toLocaleDateString());
+                    console.log(date4.toLocaleDateString());
+                    console.log(date5.toLocaleDateString());
+                    dateEle1 = document.createElement('option');
+                    dateEle1.innerText = date1.toLocaleDateString();
+                    dateEle1.setAttribute("value", date1);
+                    dateSelect.appendChild(dateEle1);
+                    dateEle2 = document.createElement('option');
+                    dateEle2.innerText = date2.toLocaleDateString();
+                    dateEle2.setAttribute("value", date2);
+                    dateSelect.appendChild(dateEle2);
+                    dateEle3 = document.createElement('option');
+                    dateEle3.innerText = date3.toLocaleDateString();
+                    dateEle3.setAttribute("value", date3);
+                    dateSelect.appendChild(dateEle3);
+                    dateEle4 = document.createElement('option');
+                    dateEle4.innerText = date4.toLocaleDateString();
+                    dateEle4.setAttribute("value", date4);
+                    dateSelect.appendChild(dateEle4);
+                    dateEle5 = document.createElement('option');
+                    dateEle5.innerText = date5.toLocaleDateString();
+                    dateEle5.setAttribute("value", date5);
+                    dateSelect.appendChild(dateEle5);
+
+                    dateSelect.addEventListener("change", (event) => {
+                
+ 
+                            // reset page - delete all divs
+                            let container = document.getElementById('comparisons');
+                            while (container.hasChildNodes()){
+                                container.removeChild(container.firstChild);
+                            }
+
+                            addEmptyBox();
+                       
+                    });
+                }
+
 
         </script>
     </head>
@@ -479,13 +593,15 @@
             <br/>
         </div>
         <!-- top form -->
-        <span>
-            <input id="date" class="date-box" type="date">
+        <div class="flex-container">
+            <select id="date" class="date-box">
+                
+            </select>
             <div id="pass-selector">
                 <input name="pass" id="pass-epic" value="epic" type="radio" checked><label for="epic">Epic</label>
                 <input name="pass" id="pass-icon" value="ikon" type="radio"><label for="ikon">Ikon</label>
             </div>
-        </span>
+        </div>
 
         <!-- body -->
         <div id="comparisons">
