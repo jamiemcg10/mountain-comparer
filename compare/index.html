@@ -18,7 +18,7 @@
                 clear:both;
             }
 
-            #add-button {
+            #add-btn {
                 margin-top:10px;
                 clear: both;
             }
@@ -61,9 +61,18 @@
                 color: gray;
             }
 
+            .hi-temp {
+                font-size: -webkit-xxx-large;
+            }
+
             .label-div{
                 float: left;
                 width: 7vw;
+            }
+
+            .lo-temp {
+                font-size: larger;
+                color: rgb(134, 134, 134);
             }
 
             .menu {
@@ -78,6 +87,11 @@
                 margin: 10px 0px;
                 overflow: auto;
                 
+            }
+
+            #mountain-name {
+                font-size: large;
+                font-weight: bolder;
             }
 
             .mtn-select{
@@ -108,6 +122,19 @@
                 border-radius: 5px;
                 margin-left: 5px;
             }
+
+            .weather-icon {
+                margin: -42px;
+                margin-left: -13px;
+            }
+
+            .weather-flex-container{
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                padding-left: 5vw;
+                overflow: hidden;
+            }
   
 @media screen and (max-width: 800px) {
     .drop-label {
@@ -134,6 +161,7 @@
         <script>
             let i = 0;
             let pass = 'epic';
+            let num_comps = 0;
 
             document.addEventListener('DOMContentLoaded', (event) => {                
                 
@@ -165,7 +193,7 @@
                 getDates();
                 addEmptyBox();
                 
-                let add_btn = document.getElementById('add-button');
+                let add_btn = document.getElementById('add-btn');
                 
                 add_btn.addEventListener("click", (event) => {
                     addEmptyBox();
@@ -466,9 +494,12 @@
                 let closeId = "close_" + i;
                 closeButton.setAttribute("id", closeId);
                 closeButton.innerText = "x";
-                
+                buttonDiv.appendChild(closeButton);
+                closeButton.style.display = 'none';
+                newMtnBox.appendChild(buttonDiv);
+
                 if (current_comparisons.firstChild != current_comparisons.lastChild){
-                    buttonDiv.appendChild(closeButton);
+                    closeButton.style.display = 'block';
                 }
 
 
@@ -481,14 +512,21 @@
                 newBoxContent.appendChild(blankDiv2);
                 newBoxContent.appendChild(goBtn);
                 newMtnBox.appendChild(newBoxContent);
-         
-                if (current_comparisons.firstChild != current_comparisons.lastChild){
-                    newMtnBox.appendChild(buttonDiv);
+                num_comps += 1;
 
-                    closeButton.addEventListener("click", (event) => {
-                        closeButton.parentElement.parentElement.remove();
-                    });
+                if (num_comps >= 5){
+                    document.getElementById('add-btn').style.display = 'none';
                 }
+         
+
+                closeButton.addEventListener("click", (event) => {
+                    closeButton.parentElement.parentElement.remove();
+                    num_comps -= 1;
+                    if (num_comps < 5){
+                        document.getElementById('add-btn').style.display = 'block';
+                    }
+                });
+                
                 
                 current_comparisons.appendChild(newMtnBox);
 
@@ -496,7 +534,8 @@
                 
                 document.getElementById(selector).addEventListener("change", (event) => {
                     let region = document.getElementById(selector).value;
-                    let mountain_select = "mountain_" + i;
+                    let ind = event.target.id.substr(7);
+                    let mountain_select = "mountain_" + ind;
                     let mountains = document.getElementById(mountain_select);
                     while (mountains.hasChildNodes()){
                         mountains.removeChild(mountains.firstChild);
@@ -507,27 +546,59 @@
                 });
 
                 goBtn.addEventListener("click", (event) => {
+                    let closeButtons = document.getElementsByClassName('close-button');
+                    console.log(closeButtons);
+                    closeButtons[0].style.display = 'block';
+
                     console.log(mtn_select.value);
                     console.log(passMountains[mtn_select.value]["zipcode"]);
 
                     newMtnBox.removeChild(newBoxContent);
-                    requestWeather(passMountains[mtn_select.value]["zipcode"]);
-                });
+                    let weather = requestWeather(passMountains[mtn_select.value]["zipcode"]);
+
                 
-                function requestWeather(zipcode){
-                    let requestURL = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${APIKEY}`;
-                    let request = new XMLHttpRequest();
-                    request.open('GET', requestURL);
-                    //request.withCredentials = true;
-                    request.responseType = 'json';
-                    request.send();
+                    function requestWeather(zipcode){
+                        //let weather=null;
+                        let requestURL = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&units=imperial&appid=${APIKEY}`;
+                        let request = new XMLHttpRequest();
+                        request.open('GET', requestURL);
+                        //request.withCredentials = true;
+                        request.responseType = 'json';
+                        request.send();
 
-                    request.onload = function(){
-                        const weather = request.response;
-                        console.log(weather);
+                        request.onload = function(){
+                            let tWeather = request.response;
+                            let weather = getWeather(tWeather);
+
+                            //console.log(weather);
+                            
+                            let weatherContainer = document.createElement('div');
+                            let nameDiv = document.createElement('div');
+                            nameDiv.setAttribute('id', 'mountain-name');
+                            nameDiv.innerHTML = mtn_select.value;
+                            let hiTemp = document.createElement('div');
+                            hiTemp.setAttribute('class', 'hi-temp');
+                            let loTemp = document.createElement('div');
+                            loTemp.setAttribute('class', 'lo-temp');
+                            let iconDiv = document.createElement('div');
+                            //iconDiv.setAttribute('class', 'weather-icon');
+                            let icon = document.createElement('img');
+                            icon.setAttribute('src', `http://openweathermap.org/img/wn/${weather[2]}@2x.png`);
+                            icon.setAttribute('class', 'weather-icon');
+                            weatherContainer.setAttribute('class', 'temps weather-flex-container');
+                            hiTemp.innerHTML=Math.round(weather[0]) + '&deg;';
+                            loTemp.innerHTML="/ " + Math.round(weather[1])+'&deg;';
+                            //iconDiv.appendChild(icon);
+                            weatherContainer.appendChild(hiTemp);
+                            weatherContainer.appendChild(loTemp);
+                            weatherContainer.appendChild(icon);
+                            newMtnBox.appendChild(nameDiv);           
+                            newMtnBox.appendChild(weatherContainer);
+                            
+                        }
+                                            
                     }
-                }
-
+                });
             }
 
             function getDates(){
@@ -581,6 +652,72 @@
                     });
                 }
 
+                function getWeather(weatherObject){
+                    let high=null;
+                    let low=null;
+                    let icons = new Map();
+                    let mainIco = null;
+
+                    let selectedDate = new Date(document.getElementById('date').value).getDate();
+                    console.log(document.getElementById('date').value);
+
+                    //console.log(weatherObject);
+                    weatherObject['list'].forEach((hour) => {
+                        let time = hour['dt']*1000;
+                        let currHour = new Date();
+                        currHour.setTime(time);
+                        let day = currHour.getDate();
+                        //console.log(selectedDate);
+                        if (day === selectedDate){ // not filtering out days
+                            console.log(hour);
+                            //console.log(day);
+                            console.log(hour['dt']);
+                            //console.log("we're equal");
+                            let key = hour['weather']['0']['main'];
+                            let code = hour['weather']['0']['id'];
+            
+                            if (code >= 701 & code <= 781){
+                                key = 'Atmosphere';
+                            } 
+                            if (icons.has(key)){
+                                icons.set(key, icons.get(key)+1);
+                            } else {
+                                icons.set(key, 1);
+                            }
+                            if (high == null & low == null){
+                                high = hour['main']['temp'];
+                                low = hour['main']['temp'];
+                            } else {
+                                if (hour['main']['temp'] > high){
+                                    //console.log(hour);
+                                    high = hour['main']['temp'];
+                                }
+                                if (hour['main']['temp'] < low){
+                                    low = hour['main']['temp'];
+                                }
+                            }
+                        }
+                    })
+
+                    console.log(icons);
+                    // iterate through keys to decide which weather icon to use
+                    let tempCount = 0;
+                    let iconMap = new Map([['Thunderstorm','11d'],['Drizzle','09d'],['Rain','10d'],['Snow','13d'],['Atmosphere','50d'],['Clear','01d'],['Clouds','03d']]);
+                    icons.forEach((value, key) => {
+                        if (mainIco == null){
+                            mainIco = key;
+                            tempCount = value;
+                        } else if(value > tempCount){
+                            tempCount = value;
+                            mainIco = key;
+                        }
+                    });
+
+                    console.log(mainIco);
+                    mainIco = iconMap.get(mainIco);
+                    return [high, low, mainIco];
+                }
+
 
         </script>
     </head>
@@ -610,7 +747,7 @@
         
         <!-- remove button if 5 boxes on screen -->
         <div id="add-box">
-        <button type="button" id="add-button" class="myButton">+ Add row</button>
+        <button type="button" id="add-btn" class="myButton">+ Add row</button>
         </div>
     </body>
 
