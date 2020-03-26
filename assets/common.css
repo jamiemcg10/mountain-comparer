@@ -2,6 +2,9 @@
     font-family: Nunito, sans-serif;
     color:#666666;
 }
+[title="Hosted on free web hosting 000webhost.com. Host your own website for FREE."]{
+    display:none;
+}
 
 
 body {
@@ -9,7 +12,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    min-height: 95vh;
+    background-attachment: fixed;
+    xmin-height: 95vh;
 }
 
 
@@ -45,4 +49,20 @@ body {
         top:1px;
     }
 
+    /*
+    
+    @media screen and (max-width: 800px) {
+        body {
+            background-image: url("../assets/FAVPNG_mount-everest-mountain-euclidean-vector-illustration_6AYW1XX4(2).png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            xmin-height: 100vh;
+            max-height: 100vh;
+            overflow: auto;
+            height: 100%;
+        }
+    }
+    */
 
