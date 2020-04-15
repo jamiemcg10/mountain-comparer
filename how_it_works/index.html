@@ -22,6 +22,10 @@
                 margin-left: 5vw;
             }
 
+            p img {
+                width: 15px;
+            }
+
             li + li {
                 margin-top: 5px;
             }
@@ -59,10 +63,6 @@
                 display: inline;
             }
 
-            p img {
-                width: 15px;
-            }
-
             span + span {
                 margin-left: 10px;
             }
@@ -83,44 +83,42 @@
                 margin: auto 10vw;
             }
 
-
-
         </style>
 
         <script>
-            document.addEventListener("DOMContentLoaded", (event) => {
+            document.addEventListener('DOMContentLoaded', (event) => {
                 let title = document.getElementById('title');
-                title.addEventListener("mouseover", (event) => {
-                    title.style.color = "darkblue";
+                title.addEventListener('mouseover', (event) => {
+                    title.style.color = 'darkblue';
                 });
 
-                title.addEventListener("mouseout", (event) => {
-                    title.style.color = "inherit";
+                title.addEventListener('mouseout', (event) => {
+                    title.style.color = 'inherit';
                 });
             });
         </script>
         
     </head>
     <body class="overlay">
-                <!-- menu -->
-                <div class="menu">
-                    <span><a href="../">Home</a></span>
-                    <span><a href="../compare/">Compare</a></span>
-                    <br/>
-                </div>
+        <div class="menu">
+            <span><a href="../">Home</a></span>
+            <span><a href="../compare/">Compare</a></span>
+            <br/>
+        </div>
+
         <div class="text-box">
             <div class="text">
-            <h1 id="title">How it works</h1>
-            <p>Compare the weather at different mountains on your pass. First, select your pass in the top right-hand corner. Then:</p>
-            <ol>
-                <li>Select a region of the country.</li>
-                <li>Select a mountain from those in your chosen region.</li>
-                <li>Click 'Go'.</li>
-                <li>Repeat for the other mountains you want to compare. You can compare up to 5 mountains.</li>
-            </ol>
-            <p>That's it! You can also click the <img id="report" src="../assets/report.png"> icon to open that mountain's snow report for today.</p>
-            <p>Got it?</p> <a href="../compare/">Try it out!</a>
-        </div>
+                <h1 id="title">How it works</h1>
+                <p>Compare the weather at different mountains on your pass. First, select your pass in the top right-hand corner. Then:</p>
+                <ol>
+                    <li>Select a region of the country.</li>
+                    <li>Select a mountain from those in your chosen region.</li>
+                    <li>Click 'Go'.</li>
+                    <li>Repeat for the other mountains you want to compare. You can compare up to 5 mountains.</li>
+                </ol>
+                <p>That's it! You can also click the <img id="report" src="../assets/report.png" alt="report icon"> icon to open that mountain's snow report for today.</p>
+                <p>Got it?</p> <a href="../compare/">Try it out!</a>
+            </div>
         </div>
         
     </body>

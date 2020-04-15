@@ -1,5 +1,3 @@
-//import { threadId } from "worker_threads";
-
 export class DayWeather {
 
     constructor(){
@@ -41,23 +39,15 @@ export function getWeather(weatherObject){
     let mainIco = null;
 
     let selectedDate = new Date(document.getElementById('date').value).getDate();
-    console.log(document.getElementById('date').value);
-
     let weather = new DayWeather();
 
-    //console.log(weatherObject);
     weatherObject['list'].forEach((hour) => {
         let time = hour['dt']*1000;
         let currHour = new Date();
         currHour.setTime(time);
         let day = currHour.getDate();
-        //console.log(selectedDate);
 
         if (day === selectedDate){ // not filtering out days
-            console.log(hour);
-            //console.log(day);
-            console.log(hour['dt']);
-            //console.log("we're equal");
             let key = hour['weather']['0']['main'];
             let code = hour['weather']['0']['id'];
 
@@ -77,7 +67,6 @@ export function getWeather(weatherObject){
 
             } else {
                 if (hour['main']['temp'] > high){
-                    //console.log(hour);
                     high = hour['main']['temp'];
                     weather.high = hour['main']['temp'];
                 }
@@ -89,7 +78,6 @@ export function getWeather(weatherObject){
         }
     })
 
-    console.log(icons);
     // iterate through keys to decide which weather icon to use
     let tempCount = 0;
     let iconMap = new Map([['Thunderstorm','11d'],['Drizzle','09d'],['Rain','10d'],['Snow','13d'],['Atmosphere','50d'],['Clear','01d'],['Clouds','03d']]);
@@ -104,7 +92,6 @@ export function getWeather(weatherObject){
     });
 
     weather.icon = iconMap.get(mainIco);
-    console.log(weather.icon);
 
     return weather;
 }

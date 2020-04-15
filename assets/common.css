@@ -24,9 +24,7 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
-    xmin-height: 95vh;
 }
-
 
 .overlay {
     background-color: rgba(255, 255, 255, .5);
@@ -65,20 +63,5 @@ body {
         background-color: lightgray;
     }
 
-    /*
-    
-    @media screen and (max-width: 800px) {
-        body {
-            background-image: url("../assets/FAVPNG_mount-everest-mountain-euclidean-vector-illustration_6AYW1XX4(2).png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-            xmin-height: 100vh;
-            max-height: 100vh;
-            overflow: auto;
-            height: 100%;
-        }
-    }
-    */
+
 
