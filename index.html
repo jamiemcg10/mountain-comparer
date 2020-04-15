@@ -4,17 +4,23 @@
         <title>Mountain Comparison</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="assets/favicon.ico">
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
         <link href="assets/common.css" rel="stylesheet">
 
 
 
         <style>
+
+            div + div {
+                margin-bottom: 5px;
+            }
+
             h1, h3, p {
                 text-align: center;
             }
 
-            h1 {
+            .text-box h1 {
                 font-size: 10vh;
             }
 
@@ -31,14 +37,36 @@
             }
 
         </style>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                let title = document.getElementById('title');
+                title.addEventListener("mouseover", (event) => {
+                    title.style.color = "darkblue";
+                });
+
+                title.addEventListener("mouseout", (event) => {
+                    title.style.color = "inherit";
+                });
+
+                let sub = document.getElementById('sub');
+                sub.addEventListener("mouseover", (event) => {
+                    sub.style.color = "darkblue";
+                });
+
+                sub.addEventListener("mouseout", (event) => {
+                    sub.style.color = "inherit";
+                });
+            });
+        </script>
     </head>
 
     <body class="overlay">
         <div class="text-box">
-            <h1>Where should I go?</h1>
-            <h3>Compare conditions at different mountains</h3>
-            <div><p><a href="compare/index.html">Get started</a></p></div>
-            <div><p><a href="how_it_works/index.html">How it works</a></p></div>
+            <h1 id="title">Where should I go?</h1>
+            <h3 id="sub">Compare conditions at different mountains</h3>
+            <div><p><a href="compare/">Get started</a></p></div>
+            <div><p><a href="how_it_works/">How it works</a></p></div>
         </div>
     </body>
 </html>

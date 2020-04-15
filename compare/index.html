@@ -8,13 +8,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Compare Mountains</title>
+        <link rel="icon" href="../assets/favicon.ico">
         <link href="../assets/common.css" rel="stylesheet">
         <script src="../assets/passMountains.js"></script>
         <script src="apk.js"></script>
 
         <style>
 
-            #add-box {
+            div + #add-box {
                 clear:both;
             }
 
@@ -23,7 +24,7 @@
                 clear: both;
             }
 
-            .box-content {
+            .mountain-box .box-content {
                 float: left;
                 width: 80%;
             }
@@ -32,9 +33,10 @@
                 float: right;
                 margin-right: 5px;
                 padding: 2px 5px;
+                font-family: monospace;
             }
 
-            .date-box {
+            .flex-container .date-box {
                 margin: 5px 0px;
             }
 
@@ -52,7 +54,7 @@
                 flex-wrap: wrap;
             }
 
-            .go-button {
+            .box-content .go-button {
                 margin-top: 5px;
                 margin-left: 6vw;
             }
@@ -63,6 +65,14 @@
 
             .hi-temp {
                 font-size: -webkit-xxx-large;
+            }
+
+            label + input {
+                margin-left: 10px;
+            }
+
+            input + label {
+                margin-left: 2px;
             }
 
             .label-div{
@@ -80,13 +90,17 @@
                 margin-bottom: 10px;
             }
 
-            .mountain-box{
+            #comparisons .mountain-box{
                 background-color: rgba(230, 228, 228, .8);
                 border-radius: 5px;
                 padding: 10px;
                 margin: 10px 0px;
                 overflow: auto;
                 
+            }
+
+            #comparisons .mountain-box:hover{
+                background-color: rgba(230, 228, 228, 1);
             }
 
             #mountain-name {
@@ -99,7 +113,11 @@
                 xdisplay: block;
             }
 
-            #pass-selector {
+            .pass-label:hover {
+                color:rgb(56, 56, 56);
+            } 
+
+            .flex-container #pass-selector {
                 background-color: rgba(230, 228, 228, .8);
                 border-radius: 5px;
                 padding: 5px;
@@ -110,6 +128,19 @@
 
             .region-select{
                 display: inline; 
+            }
+
+            .report-ico {
+                width: 30px; 
+                margin-left: 150px;   
+            }
+
+            .report-link::before{
+                content: "";
+            }
+
+            .report-link::after{
+                content: "";
             }
 
             #right-align{
@@ -123,12 +154,20 @@
                 margin-left: 5px;
             }
 
-            .weather-icon {
-                margin: -42px;
-                margin-left: -13px;
+            select:hover{
+                border-color: darkslategray;
             }
 
-            .weather-flex-container{
+            span + span {
+                margin-left: 10px;
+            }
+
+            div + img {
+                margin: -42px;
+                margin-left: -5px;
+            }
+
+            .mountain-box .weather-flex-container{
                 display: flex;
                 justify-content: start;
                 align-items: center;
@@ -153,12 +192,15 @@
 
         </style>
 
-        <script>
+        <script type="module">
+            import { mountainFill } from './mountainFill.js';
+            import { getWeather, DayWeather } from './getWeather.js';
+            //import { getDates } from './getDates.js';
             let i = 0;
             let pass = 'epic';
             let num_comps = 0;
 
-            document.addEventListener('DOMContentLoaded', (event) => {                
+            document.addEventListener('DOMContentLoaded', (event) => {    
                 
                 let pass_selected = document.getElementById('pass-selector');
 
@@ -174,15 +216,12 @@
                                 container.removeChild(container.firstChild);
                             }
 
+                            num_comps = 0;
                             pass = element.value;
                             addEmptyBox();
-                        }
-                        
+                        } 
                     }
-
                 });
-
-                
 
             });
                 getDates();
@@ -197,232 +236,233 @@
             });
 
             
-            function mountain_fill(selectEle, region){
-                if (pass == 'epic'){
-                    if (region == 'East'){
-                        let opt_stowe = document.createElement("option");
-                        opt_stowe.innerText = "Stowe";
-                        let opt_okemo = document.createElement("option");
-                        opt_okemo.innerText = "Okemo";
-                        let opt_mtsnow = document.createElement("option");
-                        opt_mtsnow.innerText = "Mount Snow";
-                        let opt_hunter = document.createElement("option");
-                        opt_hunter.innerText = "Hunter";
-                        let opt_attitash = document.createElement("option");
-                        opt_attitash.innerText = 'Attitash';
-                        let opt_wildcat = document.createElement("option");
-                        opt_wildcat.innerText = 'Wildcat'
-                        let opt_sunapee = document.createElement("option");
-                        opt_sunapee.innerText = "Mount Sunapee";
-                        let opt_crotched = document.createElement("option");
-                        opt_crotched.innerText = 'Crotched';
-                        let opt_liberty = document.createElement("option");
-                        opt_liberty.innerText = 'Liberty';
-                        let opt_roundtop = document.createElement("option");
-                        opt_roundtop.innerText = 'Roundtop';
-                        let opt_whitetail = document.createElement("option");
-                        opt_whitetail.innerText = 'Whitetail';
-                        let opt_jackFrost = document.createElement("option");
-                        opt_jackFrost.innerText = 'Jack Frost';
-                        let opt_bigBoulder = document.createElement("option");
-                        opt_bigBoulder.innerText = 'Big Boulder';
+            // function mountain_fill(selectEle, region, pass){
+            //     if (pass == 'epic'){
+            //         if (region == 'East'){
+            //             let opt_stowe = document.createElement("option");
+            //             opt_stowe.innerText = "Stowe";
+            //             let opt_okemo = document.createElement("option");
+            //             opt_okemo.innerText = "Okemo";
+            //             let opt_mtsnow = document.createElement("option");
+            //             opt_mtsnow.innerText = "Mount Snow";
+            //             let opt_hunter = document.createElement("option");
+            //             opt_hunter.innerText = "Hunter";
+            //             let opt_attitash = document.createElement("option");
+            //             opt_attitash.innerText = 'Attitash';
+            //             let opt_wildcat = document.createElement("option");
+            //             opt_wildcat.innerText = 'Wildcat'
+            //             let opt_sunapee = document.createElement("option");
+            //             opt_sunapee.innerText = "Mount Sunapee";
+            //             let opt_crotched = document.createElement("option");
+            //             opt_crotched.innerText = 'Crotched';
+            //             let opt_liberty = document.createElement("option");
+            //             opt_liberty.innerText = 'Liberty';
+            //             let opt_roundtop = document.createElement("option");
+            //             opt_roundtop.innerText = 'Roundtop';
+            //             let opt_whitetail = document.createElement("option");
+            //             opt_whitetail.innerText = 'Whitetail';
+            //             let opt_jackFrost = document.createElement("option");
+            //             opt_jackFrost.innerText = 'Jack Frost';
+            //             let opt_bigBoulder = document.createElement("option");
+            //             opt_bigBoulder.innerText = 'Big Boulder';
 
-                        selectEle.appendChild(opt_stowe);
-                        selectEle.appendChild(opt_okemo);
-                        selectEle.appendChild(opt_mtsnow);
-                        selectEle.appendChild(opt_hunter);
-                        selectEle.appendChild(opt_attitash);
-                        selectEle.appendChild(opt_wildcat);
-                        selectEle.appendChild(opt_sunapee);
-                        selectEle.appendChild(opt_crotched);
-                        selectEle.appendChild(opt_liberty);
-                        selectEle.appendChild(opt_roundtop);
-                        selectEle.appendChild(opt_whitetail);
-                        selectEle.appendChild(opt_jackFrost);
-                        selectEle.appendChild(opt_bigBoulder);
-                    }
+            //             selectEle.appendChild(opt_stowe);
+            //             selectEle.appendChild(opt_okemo);
+            //             selectEle.appendChild(opt_mtsnow);
+            //             selectEle.appendChild(opt_hunter);
+            //             selectEle.appendChild(opt_attitash);
+            //             selectEle.appendChild(opt_wildcat);
+            //             selectEle.appendChild(opt_sunapee);
+            //             selectEle.appendChild(opt_crotched);
+            //             selectEle.appendChild(opt_liberty);
+            //             selectEle.appendChild(opt_roundtop);
+            //             selectEle.appendChild(opt_whitetail);
+            //             selectEle.appendChild(opt_jackFrost);
+            //             selectEle.appendChild(opt_bigBoulder);
+            //         }
 
-                    if (region == 'Midwest'){
-                        let opt_wilmot = document.createElement('option');
-                        opt_wilmot.innerText = 'Wilmot';
-                        let opt_aftonAlps = document.createElement('option');
-                        opt_aftonAlps.innerText = 'Afton Alps';
-                        let opt_mtBrighton = document.createElement('option');
-                        opt_mtBrighton.innerText = 'Mt. Brighton';
-                        let opt_alpineValley = document.createElement('option');
-                        opt_alpineValley.innerText = 'Alpine Valley';
-                        let opt_bostonMills = document.createElement('option');
-                        opt_bostonMills.innerText = 'Boston Mills';
-                        let opt_brandywine = document.createElement('option');
-                        opt_brandywine.innerText = 'Brandywine';
-                        let opt_madRiverMtn = document.createElement('option');
-                        opt_madRiverMtn.innerText = 'Mad River Mountain';
-                        let opt_hiddenValley = document.createElement('option');
-                        opt_hiddenValley.innerText = 'Hidden Valley';
-                        let opt_snowCreek = document.createElement('option');
-                        opt_snowCreek.innerText = 'Snow Creek';
-                        let opt_paoliPeaks = document.createElement('option');
-                        opt_paoliPeaks.innerText = 'Paoli Peaks';
+            //         if (region == 'Midwest'){
+            //             let opt_wilmot = document.createElement('option');
+            //             opt_wilmot.innerText = 'Wilmot';
+            //             let opt_aftonAlps = document.createElement('option');
+            //             opt_aftonAlps.innerText = 'Afton Alps';
+            //             let opt_mtBrighton = document.createElement('option');
+            //             opt_mtBrighton.innerText = 'Mt. Brighton';
+            //             let opt_alpineValley = document.createElement('option');
+            //             opt_alpineValley.innerText = 'Alpine Valley';
+            //             let opt_bostonMills = document.createElement('option');
+            //             opt_bostonMills.innerText = 'Boston Mills';
+            //             let opt_brandywine = document.createElement('option');
+            //             opt_brandywine.innerText = 'Brandywine';
+            //             let opt_madRiverMtn = document.createElement('option');
+            //             opt_madRiverMtn.innerText = 'Mad River Mountain';
+            //             let opt_hiddenValley = document.createElement('option');
+            //             opt_hiddenValley.innerText = 'Hidden Valley';
+            //             let opt_snowCreek = document.createElement('option');
+            //             opt_snowCreek.innerText = 'Snow Creek';
+            //             let opt_paoliPeaks = document.createElement('option');
+            //             opt_paoliPeaks.innerText = 'Paoli Peaks';
 
-                        selectEle.appendChild(opt_wilmot);
-                        selectEle.appendChild(opt_aftonAlps);
-                        selectEle.appendChild(opt_mtBrighton);
-                        selectEle.appendChild(opt_alpineValley);
-                        selectEle.appendChild(opt_bostonMills);
-                        selectEle.appendChild(opt_brandywine);
-                        selectEle.appendChild(opt_madRiverMtn);
-                        selectEle.appendChild(opt_hiddenValley);
-                        selectEle.appendChild(opt_snowCreek);
-                        selectEle.appendChild(opt_paoliPeaks);
-                    }
+            //             selectEle.appendChild(opt_wilmot);
+            //             selectEle.appendChild(opt_aftonAlps);
+            //             selectEle.appendChild(opt_mtBrighton);
+            //             selectEle.appendChild(opt_alpineValley);
+            //             selectEle.appendChild(opt_bostonMills);
+            //             selectEle.appendChild(opt_brandywine);
+            //             selectEle.appendChild(opt_madRiverMtn);
+            //             selectEle.appendChild(opt_hiddenValley);
+            //             selectEle.appendChild(opt_snowCreek);
+            //             selectEle.appendChild(opt_paoliPeaks);
+            //         }
 
-                    if (region == 'Rockies'){
-                        let opt_vail= document.createElement('option');
-                        opt_vail.innerText = 'Vail';
-                        let opt_beaverCreek= document.createElement('option');
-                        opt_beaverCreek.innerText = 'Beaver Creek';
-                        let opt_breckenridge = document.createElement('option');
-                        opt_breckenridge.innerText = 'Breckenridge';
-                        let opt_parkCity = document.createElement('option');
-                        opt_parkCity.innerText = 'Park City';
-                        let opt_keystone = document.createElement('option');
-                        opt_keystone.innerText = 'Keystone';
-                        let opt_crestedButte = document.createElement('option');
-                        opt_crestedButte.innerText = 'Crested Butte';
+            //         if (region == 'Rockies'){
+            //             let opt_vail= document.createElement('option');
+            //             opt_vail.innerText = 'Vail';
+            //             let opt_beaverCreek= document.createElement('option');
+            //             opt_beaverCreek.innerText = 'Beaver Creek';
+            //             let opt_breckenridge = document.createElement('option');
+            //             opt_breckenridge.innerText = 'Breckenridge';
+            //             let opt_parkCity = document.createElement('option');
+            //             opt_parkCity.innerText = 'Park City';
+            //             let opt_keystone = document.createElement('option');
+            //             opt_keystone.innerText = 'Keystone';
+            //             let opt_crestedButte = document.createElement('option');
+            //             opt_crestedButte.innerText = 'Crested Butte';
 
-                        selectEle.appendChild(opt_vail);
-                        selectEle.appendChild(opt_beaverCreek);
-                        selectEle.appendChild(opt_breckenridge);
-                        selectEle.appendChild(opt_parkCity);
-                        selectEle.appendChild(opt_keystone);
-                        selectEle.appendChild(opt_crestedButte);
-                    }
+            //             selectEle.appendChild(opt_vail);
+            //             selectEle.appendChild(opt_beaverCreek);
+            //             selectEle.appendChild(opt_breckenridge);
+            //             selectEle.appendChild(opt_parkCity);
+            //             selectEle.appendChild(opt_keystone);
+            //             selectEle.appendChild(opt_crestedButte);
+            //         }
 
-                    if (region == 'West'){
-                        let opt_heavenly = document.createElement('option');
-                        opt_heavenly.innerText = 'Heavenly';
-                        let opt_northstar = document.createElement('option');
-                        opt_northstar.innerText = 'Northstar';
-                        let opt_kirkwood = document.createElement('option');
-                        opt_kirkwood.innerText = 'Kirkwood';
-                        let opt_stevensPass = document.createElement('option');
-                        opt_stevensPass.innerText = 'Stevens Pass';
+            //         if (region == 'West'){
+            //             let opt_heavenly = document.createElement('option');
+            //             opt_heavenly.innerText = 'Heavenly';
+            //             let opt_northstar = document.createElement('option');
+            //             opt_northstar.innerText = 'Northstar';
+            //             let opt_kirkwood = document.createElement('option');
+            //             opt_kirkwood.innerText = 'Kirkwood';
+            //             let opt_stevensPass = document.createElement('option');
+            //             opt_stevensPass.innerText = 'Stevens Pass';
 
-                        selectEle.appendChild(opt_heavenly);
-                        selectEle.appendChild(opt_northstar);
-                        selectEle.appendChild(opt_kirkwood);
-                        selectEle.appendChild(opt_stevensPass);
-                    }
-                }
+            //             selectEle.appendChild(opt_heavenly);
+            //             selectEle.appendChild(opt_northstar);
+            //             selectEle.appendChild(opt_kirkwood);
+            //             selectEle.appendChild(opt_stevensPass);
+            //         }
+            //     }
 
-                if (pass == 'ikon'){
-                    if (region == 'East'){
-                        let opt_stratton= document.createElement('option');
-                        opt_stratton.innerText = 'Stratton';
-                        let opt_killington = document.createElement('option');
-                        opt_killington.innerText = 'Killington';
-                        let opt_pico = document.createElement('option');
-                        opt_pico.innerText = 'Pico';
-                        let opt_sugarbush= document.createElement('option');
-                        opt_sugarbush.innerText = 'Sugarbush Resort';
-                        let opt_snowshoe = document.createElement('option');
-                        opt_snowshoe.innerText = 'Snowshoe Mountain';
-                        let opt_sundayRiver = document.createElement('option');
-                        opt_sundayRiver.innerText = 'Sunday River';
-                        let opt_sugarloaf = document.createElement('option');
-                        opt_sugarloaf.innerText = 'Sugarloaf';
-                        let opt_loon = document.createElement('option');
-                        opt_loon.innerText = 'Loon Mountain';
+            //     if (pass == 'ikon'){
+            //         if (region == 'East'){
+            //             let opt_stratton= document.createElement('option');
+            //             opt_stratton.innerText = 'Stratton';
+            //             let opt_killington = document.createElement('option');
+            //             opt_killington.innerText = 'Killington';
+            //             let opt_pico = document.createElement('option');
+            //             opt_pico.innerText = 'Pico';
+            //             let opt_sugarbush= document.createElement('option');
+            //             opt_sugarbush.innerText = 'Sugarbush Resort';
+            //             let opt_snowshoe = document.createElement('option');
+            //             opt_snowshoe.innerText = 'Snowshoe Mountain';
+            //             let opt_sundayRiver = document.createElement('option');
+            //             opt_sundayRiver.innerText = 'Sunday River';
+            //             let opt_sugarloaf = document.createElement('option');
+            //             opt_sugarloaf.innerText = 'Sugarloaf';
+            //             let opt_loon = document.createElement('option');
+            //             opt_loon.innerText = 'Loon Mountain';
 
-                        selectEle.appendChild(opt_stratton);
-                        selectEle.appendChild(opt_killington);
-                        selectEle.appendChild(opt_pico);
-                        selectEle.appendChild(opt_sugarbush);
-                        selectEle.appendChild(opt_snowshoe);
-                        selectEle.appendChild(opt_sundayRiver);
-                        selectEle.appendChild(opt_sugarloaf);
-                        selectEle.appendChild(opt_loon);
-                    }
-                    if (region == 'Midwest'){
-                        let opt_boyneHighlands = document.createElement('option');
-                        opt_boyneHighlands.innerText = 'Boyne Highlands';
-                        let opt_boyneMountain = document.createElement('option');
-                        opt_boyneMountain.innerText = 'Boyne Mountain';
+            //             selectEle.appendChild(opt_stratton);
+            //             selectEle.appendChild(opt_killington);
+            //             selectEle.appendChild(opt_pico);
+            //             selectEle.appendChild(opt_sugarbush);
+            //             selectEle.appendChild(opt_snowshoe);
+            //             selectEle.appendChild(opt_sundayRiver);
+            //             selectEle.appendChild(opt_sugarloaf);
+            //             selectEle.appendChild(opt_loon);
+            //         }
+            //         if (region == 'Midwest'){
+            //             let opt_boyneHighlands = document.createElement('option');
+            //             opt_boyneHighlands.innerText = 'Boyne Highlands';
+            //             let opt_boyneMountain = document.createElement('option');
+            //             opt_boyneMountain.innerText = 'Boyne Mountain';
 
-                        selectEle.appendChild(opt_boyneHighlands);
-                        selectEle.appendChild(opt_boyneMountain);
-                    }
-                    if (region == 'Rockies'){
-                        let opt_steamboat = document.createElement('option');
-                        opt_steamboat.innerText = 'Steamboat';
-                        let opt_aspen = document.createElement('option');
-                        opt_aspen.innerText = 'Aspen Snowmass';
-                        let opt_winterPark = document.createElement('option');
-                        opt_winterPark.innerText = 'Winter Park Resort';
-                        let opt_copper = document.createElement('option');
-                        opt_copper.innerText = 'Copper Mountain';
-                        let opt_arapahoe = document.createElement('option');
-                        opt_arapahoe.innerText = 'Arapahoe Basin Ski Area';
-                        let opt_eldora = document.createElement('option');
-                        opt_eldora.innerText = 'Eldora Mountain Resort';
-                        let opt_bigSky= document.createElement('option');
-                        opt_bigSky.innerText = 'Big Sky Resort';
-                        let opt_jacksonHole = document.createElement('option');
-                        opt_jacksonHole.innerText = 'Jackson Hole Mountain Resort';
-                        let opt_taos = document.createElement('option');
-                        opt_taos.innerText = 'Taos Ski Valley';
-                        let opt_deerValley = document.createElement('option');
-                        opt_deerValley.innerText = 'Deer Valley Resort';
-                        let opt_solitude = document.createElement('option');
-                        opt_solitude.innerText = 'Solitude Mountain Resort';
-                        let opt_brighton= document.createElement('option');
-                        opt_brighton.innerText = 'Brighton';
-                        let opt_alta = document.createElement('option');
-                        opt_alta.innerText = 'Alta';
-                        let opt_snowbird = document.createElement('option');
-                        opt_snowbird.innerText = 'Snowbird';
+            //             selectEle.appendChild(opt_boyneHighlands);
+            //             selectEle.appendChild(opt_boyneMountain);
+            //         }
+            //         if (region == 'Rockies'){
+            //             let opt_steamboat = document.createElement('option');
+            //             opt_steamboat.innerText = 'Steamboat';
+            //             let opt_aspen = document.createElement('option');
+            //             opt_aspen.innerText = 'Aspen Snowmass';
+            //             let opt_winterPark = document.createElement('option');
+            //             opt_winterPark.innerText = 'Winter Park Resort';
+            //             let opt_copper = document.createElement('option');
+            //             opt_copper.innerText = 'Copper Mountain';
+            //             let opt_arapahoe = document.createElement('option');
+            //             opt_arapahoe.innerText = 'Arapahoe Basin Ski Area';
+            //             let opt_eldora = document.createElement('option');
+            //             opt_eldora.innerText = 'Eldora Mountain Resort';
+            //             let opt_bigSky= document.createElement('option');
+            //             opt_bigSky.innerText = 'Big Sky Resort';
+            //             let opt_jacksonHole = document.createElement('option');
+            //             opt_jacksonHole.innerText = 'Jackson Hole Mountain Resort';
+            //             let opt_taos = document.createElement('option');
+            //             opt_taos.innerText = 'Taos Ski Valley';
+            //             let opt_deerValley = document.createElement('option');
+            //             opt_deerValley.innerText = 'Deer Valley Resort';
+            //             let opt_solitude = document.createElement('option');
+            //             opt_solitude.innerText = 'Solitude Mountain Resort';
+            //             let opt_brighton= document.createElement('option');
+            //             opt_brighton.innerText = 'Brighton';
+            //             let opt_alta = document.createElement('option');
+            //             opt_alta.innerText = 'Alta';
+            //             let opt_snowbird = document.createElement('option');
+            //             opt_snowbird.innerText = 'Snowbird';
 
-                        selectEle.appendChild(opt_steamboat);
-                        selectEle.appendChild(opt_aspen);
-                        selectEle.appendChild(opt_winterPark);
-                        selectEle.appendChild(opt_copper);
-                        selectEle.appendChild(opt_arapahoe);
-                        selectEle.appendChild(opt_eldora);
-                        selectEle.appendChild(opt_bigSky);
-                        selectEle.appendChild(opt_jacksonHole);
-                        selectEle.appendChild(opt_taos);
-                        selectEle.appendChild(opt_deerValley);
-                        selectEle.appendChild(opt_solitude);
-                        selectEle.appendChild(opt_brighton);
-                        selectEle.appendChild(opt_alta);
-                        selectEle.appendChild(opt_snowbird);
-                    }
-                    if (region == 'West'){
-                        let opt_squawValley = document.createElement('option');
-                        opt_squawValley.innerText = 'Squaw Valley';
-                        let opt_june = document.createElement('option');
-                        opt_june.innerText = 'June Mountain';
-                        let opt_mammoth = document.createElement('option');
-                        opt_mammoth.innerText = 'Mammoth Mountain';
-                        let opt_bigBear = document.createElement('option');
-                        opt_bigBear.innerText = 'Big Bear Mountain Resort';
-                        let opt_crystal= document.createElement('option');
-                        opt_crystal.innerText = 'Crystal mountain';
-                        let opt_summitAtSnoqualmie = document.createElement('option');
-                        opt_summitAtSnoqualmie.innerText = 'The Summit at Snoqualmie';
+            //             selectEle.appendChild(opt_steamboat);
+            //             selectEle.appendChild(opt_aspen);
+            //             selectEle.appendChild(opt_winterPark);
+            //             selectEle.appendChild(opt_copper);
+            //             selectEle.appendChild(opt_arapahoe);
+            //             selectEle.appendChild(opt_eldora);
+            //             selectEle.appendChild(opt_bigSky);
+            //             selectEle.appendChild(opt_jacksonHole);
+            //             selectEle.appendChild(opt_taos);
+            //             selectEle.appendChild(opt_deerValley);
+            //             selectEle.appendChild(opt_solitude);
+            //             selectEle.appendChild(opt_brighton);
+            //             selectEle.appendChild(opt_alta);
+            //             selectEle.appendChild(opt_snowbird);
+            //         }
+            //         if (region == 'West'){
+            //             let opt_squawValley = document.createElement('option');
+            //             opt_squawValley.innerText = 'Squaw Valley';
+            //             let opt_june = document.createElement('option');
+            //             opt_june.innerText = 'June Mountain';
+            //             let opt_mammoth = document.createElement('option');
+            //             opt_mammoth.innerText = 'Mammoth Mountain';
+            //             let opt_bigBear = document.createElement('option');
+            //             opt_bigBear.innerText = 'Big Bear Mountain Resort';
+            //             let opt_crystal= document.createElement('option');
+            //             opt_crystal.innerText = 'Crystal mountain';
+            //             let opt_summitAtSnoqualmie = document.createElement('option');
+            //             opt_summitAtSnoqualmie.innerText = 'The Summit at Snoqualmie';
 
-                        selectEle.appendChild(opt_squawValley);
-                        selectEle.appendChild(opt_june);
-                        selectEle.appendChild(opt_mammoth);
-                        selectEle.appendChild(opt_bigBear);
-                        selectEle.appendChild(opt_crystal);
-                        selectEle.appendChild(opt_summitAtSnoqualmie);
-                    }
-                }
-            }
+            //             selectEle.appendChild(opt_squawValley);
+            //             selectEle.appendChild(opt_june);
+            //             selectEle.appendChild(opt_mammoth);
+            //             selectEle.appendChild(opt_bigBear);
+            //             selectEle.appendChild(opt_crystal);
+            //             selectEle.appendChild(opt_summitAtSnoqualmie);
+            //         }
+            //     }
+            // }
 
             
-            function addEmptyBox(){
+            const addEmptyBox = function(){
+                console.log(num_comps);
                 i = i + 1;
                 let current_comparisons = document.getElementById('comparisons');
                 let newMtnBox = document.createElement("div");
@@ -472,7 +512,7 @@
                 mtn_label.innerText = "Mountain: ";
                 mtnLabelDiv.appendChild(mtn_label);
 
-                mountain_fill(mtn_select, 'East');
+                mountainFill(mtn_select, 'East', pass);
 
                 let goBtn = document.createElement("button");
                 goBtn.innerText = 'Go';
@@ -490,13 +530,8 @@
                 closeButton.setAttribute("id", closeId);
                 closeButton.innerText = "x";
                 buttonDiv.appendChild(closeButton);
-                closeButton.style.display = 'none';
+                closeButton.style.display = 'block';
                 newMtnBox.appendChild(buttonDiv);
-
-                if (current_comparisons.firstChild != current_comparisons.lastChild){
-                    closeButton.style.display = 'block';
-                }
-
 
                 blankDiv1.appendChild(regLabelDiv);
                 blankDiv1.appendChild(region_select);
@@ -512,6 +547,10 @@
                 if (num_comps >= 5){
                     document.getElementById('add-btn').style.display = 'none';
                 }
+
+                else {
+                    document.getElementById('add-btn').style.display = 'block';
+                }
          
 
                 closeButton.addEventListener("click", (event) => {
@@ -525,6 +564,7 @@
                 
                 current_comparisons.appendChild(newMtnBox);
 
+
                 let selector = "region_" + i;
                 
                 document.getElementById(selector).addEventListener("change", (event) => {
@@ -536,11 +576,35 @@
                         mountains.removeChild(mountains.firstChild);
                     }
                     
-                    mountain_fill(mountains, region);
+                    mountainFill(mountains, region, pass);
                     
                 });
 
+                goBtn.addEventListener("focus", (event) => {
+                    document.addEventListener("onkeypress", (event) => {
+                        if (event.keyCode == 13){
+                            goBtn.click();
+                        }
+                    });
+                });
+
+                goBtn.addEventListener("focusout", (event) => {
+                    document.removeEventListener("onkeypress", (event) => {
+                        if (event.keyCode == 13){
+                            goBtn.click();
+                        }
+                    });
+                });
+
+
                 goBtn.addEventListener("click", (event) => {
+                    let date = document.getElementById('date')
+                    if (date.value == 'date' | date.value == ''){
+                        date.style.boxShadow = 'red 0px 0px 1px 2px';
+                        return false;
+                    }
+
+                    date.style.boxShadow = 'none';
                     let closeButtons = document.getElementsByClassName('close-button');
                     console.log(closeButtons);
                     closeButtons[0].style.display = 'block';
@@ -564,8 +628,6 @@
                         request.onload = function(){
                             let tWeather = request.response;
                             let weather = getWeather(tWeather);
-
-                            //console.log(weather);
                             
                             let weatherContainer = document.createElement('div');
                             let nameDiv = document.createElement('div');
@@ -578,11 +640,11 @@
                             let iconDiv = document.createElement('div');
                             //iconDiv.setAttribute('class', 'weather-icon');
                             let icon = document.createElement('img');
-                            icon.setAttribute('src', `http://openweathermap.org/img/wn/${weather[2]}@2x.png`);
+                            icon.setAttribute('src', `http://openweathermap.org/img/wn/${weather.icon}@2x.png`);
                             icon.setAttribute('class', 'weather-icon');
-                            weatherContainer.setAttribute('class', 'temps weather-flex-container');
-                            hiTemp.innerHTML=Math.round(weather[0]) + '&deg;';
-                            loTemp.innerHTML="/ " + Math.round(weather[1])+'&deg;';
+                            weatherContainer.setAttribute('class', 'weather-flex-container');
+                            hiTemp.innerHTML=Math.round(weather.high) + '&deg;';
+                            loTemp.innerHTML="/ " + Math.round(weather.low)+'&deg;';
                             //iconDiv.appendChild(icon);
                             weatherContainer.appendChild(hiTemp);
                             weatherContainer.appendChild(loTemp);
@@ -590,14 +652,36 @@
                             newMtnBox.appendChild(nameDiv);           
                             newMtnBox.appendChild(weatherContainer);
                             
+                            let link = document.createElement('a');
+                            link.setAttribute('href', passMountains[mtn_select.value]['reportLink']);
+                            link.setAttribute('class', 'report-link');
+                            link.setAttribute('id',`link${i}`)
+                            link.setAttribute('target', '__blank');
+                            link.setAttribute('rel', 'noreferrer noopener');
+                            link.innerHTML = `<img class="report-ico" id="report-ico${i}" src="../assets/report.png">`;
+                            weatherContainer.appendChild(link);
+                            
+                        
+                            let reportImg = document.getElementById(`report-ico${i}`);
+                            console.log(reportImg);
+                            reportImg.addEventListener('mouseover', (event) => {
+                                reportImg.style.width = '40px';
+
+                            });
+                            
+
+                            reportImg.addEventListener('mouseout', (event) => {
+                                reportImg.style.width = '30px';
+                            });
+                        
                         }
                                             
                     }
                 });
             }
 
-            function getDates(){
-                    dateSelect = document.getElementById('date');
+            let getDates = function(){
+                    let dateSelect = document.getElementById('date');
                     var date1 = new Date();
                     var date2 = new Date();
                     var date3 = new Date();
@@ -607,28 +691,28 @@
                     date3.setDate(date1.getDate() + 2);
                     date4.setDate(date1.getDate() + 3);
                     date5.setDate(date1.getDate() + 4);
-                    console.log(date1.toLocaleDateString());
-                    console.log(date2.toLocaleDateString());
-                    console.log(date3.toLocaleDateString());
-                    console.log(date4.toLocaleDateString());
-                    console.log(date5.toLocaleDateString());
-                    dateEle1 = document.createElement('option');
+                    //console.log(date1.toLocaleDateString());
+                    //console.log(date2.toLocaleDateString());
+                    //console.log(date3.toLocaleDateString());
+                    //console.log(date4.toLocaleDateString());
+                    //console.log(date5.toLocaleDateString());
+                    let dateEle1 = document.createElement('option');
                     dateEle1.innerText = date1.toLocaleDateString();
                     dateEle1.setAttribute("value", date1);
                     dateSelect.appendChild(dateEle1);
-                    dateEle2 = document.createElement('option');
+                    let dateEle2 = document.createElement('option');
                     dateEle2.innerText = date2.toLocaleDateString();
                     dateEle2.setAttribute("value", date2);
                     dateSelect.appendChild(dateEle2);
-                    dateEle3 = document.createElement('option');
+                    let dateEle3 = document.createElement('option');
                     dateEle3.innerText = date3.toLocaleDateString();
                     dateEle3.setAttribute("value", date3);
                     dateSelect.appendChild(dateEle3);
-                    dateEle4 = document.createElement('option');
+                    let dateEle4 = document.createElement('option');
                     dateEle4.innerText = date4.toLocaleDateString();
                     dateEle4.setAttribute("value", date4);
                     dateSelect.appendChild(dateEle4);
-                    dateEle5 = document.createElement('option');
+                    let dateEle5 = document.createElement('option');
                     dateEle5.innerText = date5.toLocaleDateString();
                     dateEle5.setAttribute("value", date5);
                     dateSelect.appendChild(dateEle5);
@@ -647,71 +731,89 @@
                     });
                 }
 
-                function getWeather(weatherObject){
-                    let high=null;
-                    let low=null;
-                    let icons = new Map();
-                    let mainIco = null;
+            // function getWeather(weatherObject){
+            //     let high=null;
+            //     let low=null;
+            //     let icons = new Map();
+            //     let mainIco = null;
 
-                    let selectedDate = new Date(document.getElementById('date').value).getDate();
-                    console.log(document.getElementById('date').value);
+            //     let selectedDate = new Date(document.getElementById('date').value).getDate();
+            //     console.log(document.getElementById('date').value);
 
-                    //console.log(weatherObject);
-                    weatherObject['list'].forEach((hour) => {
-                        let time = hour['dt']*1000;
-                        let currHour = new Date();
-                        currHour.setTime(time);
-                        let day = currHour.getDate();
-                        //console.log(selectedDate);
-                        if (day === selectedDate){ // not filtering out days
-                            console.log(hour);
-                            //console.log(day);
-                            console.log(hour['dt']);
-                            //console.log("we're equal");
-                            let key = hour['weather']['0']['main'];
-                            let code = hour['weather']['0']['id'];
-            
-                            if (code >= 701 & code <= 781){
-                                key = 'Atmosphere';
-                            } 
-                            if (icons.has(key)){
-                                icons.set(key, icons.get(key)+1);
-                            } else {
-                                icons.set(key, 1);
-                            }
-                            if (high == null & low == null){
-                                high = hour['main']['temp'];
-                                low = hour['main']['temp'];
-                            } else {
-                                if (hour['main']['temp'] > high){
-                                    //console.log(hour);
-                                    high = hour['main']['temp'];
-                                }
-                                if (hour['main']['temp'] < low){
-                                    low = hour['main']['temp'];
-                                }
-                            }
-                        }
-                    })
+            //     //console.log(weatherObject);
+            //     weatherObject['list'].forEach((hour) => {
+            //         let time = hour['dt']*1000;
+            //         let currHour = new Date();
+            //         currHour.setTime(time);
+            //         let day = currHour.getDate();
+            //         //console.log(selectedDate);
+            //         if (day === selectedDate){ // not filtering out days
+            //             console.log(hour);
+            //             //console.log(day);
+            //             console.log(hour['dt']);
+            //             //console.log("we're equal");
+            //             let key = hour['weather']['0']['main'];
+            //             let code = hour['weather']['0']['id'];
+        
+            //             if (code >= 701 & code <= 781){
+            //                 key = 'Atmosphere';
+            //             } 
+            //             if (icons.has(key)){
+            //                 icons.set(key, icons.get(key)+1);
+            //             } else {
+            //                 icons.set(key, 1);
+            //             }
+            //             if (high == null & low == null){
+            //                 high = hour['main']['temp'];
+            //                 low = hour['main']['temp'];
+            //             } else {
+            //                 if (hour['main']['temp'] > high){
+            //                     //console.log(hour);
+            //                     high = hour['main']['temp'];
+            //                 }
+            //                 if (hour['main']['temp'] < low){
+            //                     low = hour['main']['temp'];
+            //                 }
+            //             }
+            //         }
+            //     })
 
-                    console.log(icons);
-                    // iterate through keys to decide which weather icon to use
-                    let tempCount = 0;
-                    let iconMap = new Map([['Thunderstorm','11d'],['Drizzle','09d'],['Rain','10d'],['Snow','13d'],['Atmosphere','50d'],['Clear','01d'],['Clouds','03d']]);
-                    icons.forEach((value, key) => {
-                        if (mainIco == null){
-                            mainIco = key;
-                            tempCount = value;
-                        } else if(value > tempCount){
-                            tempCount = value;
-                            mainIco = key;
-                        }
-                    });
+            //     console.log(icons);
+            //     // iterate through keys to decide which weather icon to use
+            //     let tempCount = 0;
+            //     let iconMap = new Map([['Thunderstorm','11d'],['Drizzle','09d'],['Rain','10d'],['Snow','13d'],['Atmosphere','50d'],['Clear','01d'],['Clouds','03d']]);
+            //     icons.forEach((value, key) => {
+            //         if (mainIco == null){
+            //             mainIco = key;
+            //             tempCount = value;
+            //         } else if(value > tempCount){
+            //             tempCount = value;
+            //             mainIco = key;
+            //         }
+            //     });
 
-                    console.log(mainIco);
-                    mainIco = iconMap.get(mainIco);
-                    return [high, low, mainIco];
-                }
+            //     console.log(mainIco);
+            //     mainIco = iconMap.get(mainIco);
+            //     return [high, low, mainIco];
+            // }
+
+            let dateBox = document.getElementById('date');
+            dateBox.addEventListener('click', (event)=> {
+                let defaultOp = document.getElementById('default-date');
+                defaultOp.remove();
+            }, {once: true});
+
+            let passSelector = document.getElementById('pass-selector');
+            passSelector.addEventListener('mouseover', (event) => {
+                passSelector.style.backgroundColor = 'rgba(230, 228, 228, 1)';
+            });
+
+            passSelector.addEventListener('mouseout', (event) => {
+                passSelector.style.backgroundColor = 'rgba(230, 228, 228, .8)';
+            });
+
+
+
 
 
         </script>
@@ -720,18 +822,18 @@
     <body class="overlay"> 
         <!-- menu -->
         <div class="menu">
-            <span><a href="../index.html">Home</a></span>
-            <span><a href="../how_it_works/index.html">How it works</a></span>
+            <span><a href="../">Home</a></span>
+            <span><a href="../how_it_works/">How it works</a></span>
             <br/>
         </div>
         <!-- top form -->
         <div class="flex-container">
             <select id="date" class="date-box">
-                
+                <option id="default-date" value="date">Date</option>
             </select>
             <div id="pass-selector">
-                <input name="pass" id="pass-epic" value="epic" type="radio" checked><label for="epic">Epic</label>
-                <input name="pass" id="pass-icon" value="ikon" type="radio"><label for="ikon">Ikon</label>
+                <input name="pass" id="pass-epic" value="epic" type="radio" checked><label class="pass-label" for="epic">Epic</label>
+                <input name="pass" id="pass-icon" value="ikon" type="radio"><label class="pass-label" for="ikon">Ikon</label>
             </div>
         </div>
 

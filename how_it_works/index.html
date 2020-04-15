@@ -4,52 +4,122 @@
     <head>
         <title>How it works</title>
         <meta charset="utf-8">
+        <link rel="icon" href="../assets/favicon.ico">
         <link href="../assets/common.css" rel="stylesheet">
 
         <style>
+
+            p + a::after{
+                content: "";
+            }
+
+            p + a::before{
+                content: "";
+            }
+
             body {
                 margin-top: 5vw;
                 margin-left: 5vw;
             }
-            
+
+            li + li {
+                margin-top: 5px;
+            }
+
+            ol li{
+                list-style: none;
+                margin-left: 15px;
+
+            }
+
+            li::first-line {
+                margin-left: -18px;
+            }
+
+            li:nth-last-child(1) {
+                font-style: italic;
+            }
+
+            li::before{
+                content: "❆  ";
+                font-weight: bold;
+                font-style: normal;
+            }
+
             .menu {
                 margin-top: 5vh;
                 margin-bottom: 10px;
+            }
+
+            .text ol {
+                padding-left: 20px;
+            }
+
+            p + p {
+                display: inline;
+            }
+
+            p img {
+                width: 15px;
+            }
+
+            span + span {
+                margin-left: 10px;
             }
 
             .text-box {
                 margin: auto;
                 height: fit-content;
                 background-color:rgba(255,255,255,.8);
-                width:fit-content;
+                width:80%;
                 padding: 10%;
                 border:5px solid transparent;
                 border-radius: 25px;
             }
 
+            .text-box .text {
+                height: fit-content;
+                width: fit-content;
+                margin: auto 10vw;
+            }
+
 
 
         </style>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                let title = document.getElementById('title');
+                title.addEventListener("mouseover", (event) => {
+                    title.style.color = "darkblue";
+                });
+
+                title.addEventListener("mouseout", (event) => {
+                    title.style.color = "inherit";
+                });
+            });
+        </script>
         
     </head>
     <body class="overlay">
                 <!-- menu -->
                 <div class="menu">
-                    <span><a href="../index.html">Home</a></span>
-                    <span><a href="../compare/index.html">Compare</a></span>
+                    <span><a href="../">Home</a></span>
+                    <span><a href="../compare/">Compare</a></span>
                     <br/>
                 </div>
         <div class="text-box">
             <div class="text">
-            <h1>How it works</h1>
-            <p>First, select your pass in the top right-hand corner. Then:</p>
+            <h1 id="title">How it works</h1>
+            <p>Compare the weather at different mountains on your pass. First, select your pass in the top right-hand corner. Then:</p>
             <ol>
-                <li>Select a region</li>
-                <li>Select a mountain</li>
-                <li>Repeat for the mountains you want to compare</li>
+                <li>Select a region of the country.</li>
+                <li>Select a mountain from those in your chosen region.</li>
+                <li>Click 'Go'.</li>
+                <li>Repeat for the other mountains you want to compare. You can compare up to 5 mountains.</li>
             </ol>
-            <p>You can also click the number of open trails to view the mountain's trail report.</p>
-            Got it? <a href="../compare/index.html">Try it out!</a>
+            <p>That's it! You can also click the <img id="report" src="../assets/report.png"> icon to open that mountain's snow report for today.</p>
+            <p>Got it?</p> <a href="../compare/">Try it out!</a>
         </div>
         </div>
         
