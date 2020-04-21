@@ -1,5 +1,4 @@
-# mountain-comparer
-
+# Mountain Comparison
 ## Where should I go?
 A website to compare weather conditions at various ski resorts in the United States.
 
