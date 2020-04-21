@@ -28,19 +28,20 @@ export function mountainFill(selectEle, region, pass){
             let opt_bigBoulder = document.createElement("option");
             opt_bigBoulder.innerText = 'Big Boulder';
 
-            selectEle.appendChild(opt_stowe);
-            selectEle.appendChild(opt_okemo);
-            selectEle.appendChild(opt_mtsnow);
-            selectEle.appendChild(opt_hunter);
+            
             selectEle.appendChild(opt_attitash);
-            selectEle.appendChild(opt_wildcat);
-            selectEle.appendChild(opt_sunapee);
-            selectEle.appendChild(opt_crotched);
-            selectEle.appendChild(opt_liberty);
-            selectEle.appendChild(opt_roundtop);
-            selectEle.appendChild(opt_whitetail);
-            selectEle.appendChild(opt_jackFrost);
             selectEle.appendChild(opt_bigBoulder);
+            selectEle.appendChild(opt_crotched);
+            selectEle.appendChild(opt_hunter);
+            selectEle.appendChild(opt_jackFrost);
+            selectEle.appendChild(opt_liberty);
+            selectEle.appendChild(opt_mtsnow);
+            selectEle.appendChild(opt_sunapee);
+            selectEle.appendChild(opt_okemo);
+            selectEle.appendChild(opt_roundtop);
+            selectEle.appendChild(opt_stowe);
+            selectEle.appendChild(opt_whitetail);
+            selectEle.appendChild(opt_wildcat);
         }
 
         if (region == 'Midwest'){
@@ -65,16 +66,17 @@ export function mountainFill(selectEle, region, pass){
             let opt_paoliPeaks = document.createElement('option');
             opt_paoliPeaks.innerText = 'Paoli Peaks';
 
-            selectEle.appendChild(opt_wilmot);
+            
             selectEle.appendChild(opt_aftonAlps);
-            selectEle.appendChild(opt_mtBrighton);
             selectEle.appendChild(opt_alpineValley);
             selectEle.appendChild(opt_bostonMills);
             selectEle.appendChild(opt_brandywine);
-            selectEle.appendChild(opt_madRiverMtn);
             selectEle.appendChild(opt_hiddenValley);
-            selectEle.appendChild(opt_snowCreek);
+            selectEle.appendChild(opt_madRiverMtn);
+            selectEle.appendChild(opt_mtBrighton);
             selectEle.appendChild(opt_paoliPeaks);
+            selectEle.appendChild(opt_snowCreek);
+            selectEle.appendChild(opt_wilmot);
         }
 
         if (region == 'Rockies'){
@@ -91,12 +93,13 @@ export function mountainFill(selectEle, region, pass){
             let opt_crestedButte = document.createElement('option');
             opt_crestedButte.innerText = 'Crested Butte';
 
-            selectEle.appendChild(opt_vail);
+            
             selectEle.appendChild(opt_beaverCreek);
             selectEle.appendChild(opt_breckenridge);
-            selectEle.appendChild(opt_parkCity);
-            selectEle.appendChild(opt_keystone);
             selectEle.appendChild(opt_crestedButte);
+            selectEle.appendChild(opt_keystone);
+            selectEle.appendChild(opt_parkCity);
+            selectEle.appendChild(opt_vail);
         }
 
         if (region == 'West'){
@@ -110,8 +113,8 @@ export function mountainFill(selectEle, region, pass){
             opt_stevensPass.innerText = 'Stevens Pass';
 
             selectEle.appendChild(opt_heavenly);
-            selectEle.appendChild(opt_northstar);
             selectEle.appendChild(opt_kirkwood);
+            selectEle.appendChild(opt_northstar);
             selectEle.appendChild(opt_stevensPass);
         }
     }
@@ -135,14 +138,15 @@ export function mountainFill(selectEle, region, pass){
             let opt_loon = document.createElement('option');
             opt_loon.innerText = 'Loon Mountain';
 
-            selectEle.appendChild(opt_stratton);
+            
             selectEle.appendChild(opt_killington);
-            selectEle.appendChild(opt_pico);
-            selectEle.appendChild(opt_sugarbush);
-            selectEle.appendChild(opt_snowshoe);
-            selectEle.appendChild(opt_sundayRiver);
-            selectEle.appendChild(opt_sugarloaf);
             selectEle.appendChild(opt_loon);
+            selectEle.appendChild(opt_pico);
+            selectEle.appendChild(opt_snowshoe);
+            selectEle.appendChild(opt_stratton);
+            selectEle.appendChild(opt_sugarbush);
+            selectEle.appendChild(opt_sugarloaf);
+            selectEle.appendChild(opt_sundayRiver);
         }
         if (region == 'Midwest'){
             let opt_boyneHighlands = document.createElement('option');
@@ -183,20 +187,21 @@ export function mountainFill(selectEle, region, pass){
             let opt_snowbird = document.createElement('option');
             opt_snowbird.innerText = 'Snowbird';
 
-            selectEle.appendChild(opt_steamboat);
-            selectEle.appendChild(opt_aspen);
-            selectEle.appendChild(opt_winterPark);
-            selectEle.appendChild(opt_copper);
-            selectEle.appendChild(opt_arapahoe);
-            selectEle.appendChild(opt_eldora);
-            selectEle.appendChild(opt_bigSky);
-            selectEle.appendChild(opt_jacksonHole);
-            selectEle.appendChild(opt_taos);
-            selectEle.appendChild(opt_deerValley);
-            selectEle.appendChild(opt_solitude);
-            selectEle.appendChild(opt_brighton);
+            
             selectEle.appendChild(opt_alta);
+            selectEle.appendChild(opt_arapahoe);
+            selectEle.appendChild(opt_aspen);
+            selectEle.appendChild(opt_bigSky);
+            selectEle.appendChild(opt_brighton);
+            selectEle.appendChild(opt_copper);
+            selectEle.appendChild(opt_deerValley);
+            selectEle.appendChild(opt_eldora);
+            selectEle.appendChild(opt_jacksonHole);
             selectEle.appendChild(opt_snowbird);
+            selectEle.appendChild(opt_solitude);
+            selectEle.appendChild(opt_steamboat);
+            selectEle.appendChild(opt_taos);
+            selectEle.appendChild(opt_winterPark);
         }
         if (region == 'West'){
             let opt_squawValley = document.createElement('option');
@@ -208,15 +213,15 @@ export function mountainFill(selectEle, region, pass){
             let opt_bigBear = document.createElement('option');
             opt_bigBear.innerText = 'Big Bear Mountain Resort';
             let opt_crystal= document.createElement('option');
-            opt_crystal.innerText = 'Crystal mountain';
+            opt_crystal.innerText = 'Crystal Mountain';
             let opt_summitAtSnoqualmie = document.createElement('option');
             opt_summitAtSnoqualmie.innerText = 'The Summit at Snoqualmie';
 
-            selectEle.appendChild(opt_squawValley);
-            selectEle.appendChild(opt_june);
-            selectEle.appendChild(opt_mammoth);
             selectEle.appendChild(opt_bigBear);
             selectEle.appendChild(opt_crystal);
+            selectEle.appendChild(opt_june);
+            selectEle.appendChild(opt_mammoth);
+            selectEle.appendChild(opt_squawValley);
             selectEle.appendChild(opt_summitAtSnoqualmie);
         }
     }

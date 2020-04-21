@@ -251,7 +251,7 @@ let passMountains = {
         "reportLink":   "https://www.boynehighlands.com/conditions-winter",
         "numTrails":    55
     },
-    "Boyne Mountains": {
+    "Boyne Mountain": {
         "region":       "Midwest",
         "zipcode":      "49713",
         "reportLink":   "https://www.boynemountain.com/current-conditions",
@@ -299,7 +299,7 @@ let passMountains = {
         "reportLink":   "https://bigskyresort.com/current-conditions",
         "numTrails":    310
     },
-    "Jackson Hole Moutnain Resort": {
+    "Jackson Hole Mountain Resort": {
         "region":       "Rockies",
         "zipcode":      "83025",
         "reportLink":   "https://www.jacksonhole.com/mountain-status.html",
@@ -341,7 +341,7 @@ let passMountains = {
         "reportLink":   "https://www.snowbird.com/mountain-report/",
         "numTrails":    140
     },
-    "Squaw Valley Alpine Meadows": {
+    "Squaw Valley": {
         "region":       "West",
         "zipcode":      "96146",
         "reportLink":   "https://squawalpine.com/mountain-information/snow-weather-reports-lake-tahoe",
