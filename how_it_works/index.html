@@ -1,146 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<title>How it works</title>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../assets/favicon.ico" />
+		<link href="../assets/common.css" rel="stylesheet" />
 
-    <head>
-        <title>How it works</title>
-        <meta charset="utf-8">
-        <link rel="icon" href="../assets/favicon.ico">
-        <link href="../assets/common.css" rel="stylesheet">
+		<style>
+			.menu a {
+				font-size: small;
+				color: white;
+			}
+			p + a::after {
+				content: '';
+			}
 
-        <style>
+			p + a::before {
+				content: '';
+			}
 
-            .menu a {
-                font-size: small;
-                color: white;
-            }
-            p + a::after{
-                content: "";
-            }
+			body {
+				margin-top: 5vw;
+				margin-left: 5vw;
+			}
 
-            p + a::before{
-                content: "";
-            }
+			p img {
+				width: 15px;
+			}
 
-            body {
-                margin-top: 5vw;
-                margin-left: 5vw;
-            }
+			li + li {
+				margin-top: 5px;
+			}
 
-            p img {
-                width: 15px;
-            }
+			ol li {
+				list-style: none;
+				margin-left: 15px;
+			}
 
-            li + li {
-                margin-top: 5px;
-            }
+			li::first-line {
+				margin-left: -18px;
+			}
 
-            ol li{
-                list-style: none;
-                margin-left: 15px;
+			li:nth-last-child(1) {
+				font-style: italic;
+			}
 
-            }
+			li::before {
+				content: '❆  ';
+				font-weight: bold;
+				font-style: normal;
+			}
 
-            li::first-line {
-                margin-left: -18px;
-            }
+			.menu {
+				padding-top: 3vh;
+				padding-bottom: 10px;
+				margin-bottom: 5px;
+				width: 95vw;
+				margin-left: -5vw;
+				padding-left: 5vw;
+				background-color: rgb(62, 109, 137);
+			}
 
-            li:nth-last-child(1) {
-                font-style: italic;
-            }
+			.text ol {
+				padding-left: 20px;
+			}
 
-            li::before{
-                content: "❆  ";
-                font-weight: bold;
-                font-style: normal;
-            }
+			p + p {
+				display: inline;
+			}
 
-            .menu {
-                padding-top: 3vh;
-                padding-bottom: 10px;
-                margin-bottom: 5px;
-                width: 95vw;
-                margin-left: -5vw;
-                padding-left: 5vw;
-                background-color: rgb(62,109, 137);
-            }
+			span + span {
+				margin-left: 10px;
+			}
 
-            .text ol {
-                padding-left: 20px;
-            }
+			.text-box {
+				margin: auto;
+				height: fit-content;
+				background-color: rgba(255, 255, 255, 0.8);
+				width: 80%;
+				padding: 10%;
+				border: 5px solid transparent;
+				border-radius: 25px;
+			}
 
-            p + p {
-                display: inline;
-            }
+			.text-box .text {
+				height: fit-content;
+				width: fit-content;
+				margin: auto 10vw;
+			}
 
-            span + span {
-                margin-left: 10px;
-            }
+			@media screen and (max-width: 800px) {
+				.text-box .text {
+					margin: auto 0vw;
+				}
 
-            .text-box {
-                margin: auto;
-                height: fit-content;
-                background-color:rgba(255,255,255,.8);
-                width:80%;
-                padding: 10%;
-                border:5px solid transparent;
-                border-radius: 25px;
-            }
+				.text-box {
+					padding: 10% 0%;
+				}
+			}
+		</style>
 
-            .text-box .text {
-                height: fit-content;
-                width: fit-content;
-                margin: auto 10vw;
-            }
+		<script>
+			document.addEventListener('DOMContentLoaded', (event) => {
+				let title = document.getElementById('title')
+				title.addEventListener('mouseover', (event) => {
+					title.style.color = 'darkblue'
+				})
 
-            @media screen and (max-width: 800px) {
-                .text-box .text {
-                    margin: auto 0vw;
-                }
-                
-                .text-box {
-                    padding: 10% 0%;
-                }
+				title.addEventListener('mouseout', (event) => {
+					title.style.color = 'inherit'
+				})
+			})
+		</script>
+	</head>
+	<body class="overlay">
+		<div class="menu">
+			<span><a href="../">Home</a></span>
+			<span><a href="../compare/">Compare</a></span>
+			<br />
+		</div>
 
-
-            }
-        </style>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                let title = document.getElementById('title');
-                title.addEventListener('mouseover', (event) => {
-                    title.style.color = 'darkblue';
-                });
-
-                title.addEventListener('mouseout', (event) => {
-                    title.style.color = 'inherit';
-                });
-            });
-        </script>
-        
-    </head>
-    <body class="overlay">
-        <div class="menu">
-            <span><a href="../">Home</a></span>
-            <span><a href="../compare/">Compare</a></span>
-            <br/>
-        </div>
-
-        <div class="text-box">
-            <div class="text">
-                <h1 id="title">How it works</h1>
-                <p>Compare the weather at different mountains on your pass. First, select the date you want to look at and your pass. Then:</p>
-                <ol>
-                    <li>Select a region of the country.</li>
-                    <li>Select a mountain from those in your chosen region.</li>
-                    <li>Click 'Go'.</li>
-                    <li>Repeat for the other mountains you want to compare. You can compare up to 5 mountains.</li>
-                </ol>
-                <p>That's it! You can also click the <img id="report" src="../assets/report.png" alt="report icon"> icon to open that mountain's snow report for today.</p>
-                <p>Got it?</p> <a href="../compare/">Try it out!</a>
-            </div>
-        </div>
-        
-    </body>
-
+		<div class="text-box">
+			<div class="text">
+				<h1 id="title">How it works</h1>
+				<p>
+					Compare the weather at different mountains on your pass. First, select the date
+					you want to look at and your pass. Then:
+				</p>
+				<ol>
+					<li>Select a region of the country.</li>
+					<li>Select a mountain from those in your chosen region.</li>
+					<li>Click 'Go'.</li>
+					<li>
+						Repeat for the other mountains you want to compare. You can compare up to 5
+						mountains.
+					</li>
+				</ol>
+				<p>
+					That's it! You can also click the
+					<img id="report" src="../assets/report.png" alt="report icon" /> icon to open
+					that mountain's snow report for today.
+				</p>
+				<p>Got it?</p>
+				<a href="../compare/">Try it out!</a>
+			</div>
+		</div>
+	</body>
 </html>
