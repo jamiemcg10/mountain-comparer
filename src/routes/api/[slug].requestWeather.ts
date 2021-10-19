@@ -1,6 +1,5 @@
 import { getWeather } from '../../utils/getWeather'
 import { APIKEY } from '../../../apk'
-import axios from 'axios'
 
 
 export async function get({ params }) {
