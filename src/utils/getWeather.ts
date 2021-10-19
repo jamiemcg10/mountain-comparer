@@ -42,11 +42,9 @@ export function getWeather(weatherObject: any, date: Date) {
 	let weather = new DayWeather()
 
 	weatherObject['list'].forEach((hour) => {
-		let time = hour['dt'] * 1000
-		let currHour = new Date()
-		currHour.setTime(time)
+		let time = hour['dt']
+		let currHour = new Date(time)
 		let day = currHour.getDate()
-
 		if (day === date.getDate()) {
 			// not filtering out days
 			let key = hour['weather']['0']['main']
@@ -99,6 +97,7 @@ export function getWeather(weatherObject: any, date: Date) {
 		}
 	})
 
+	console.log(mainIco)
 	weather.icon = iconMap.get(mainIco)
 
 	return weather

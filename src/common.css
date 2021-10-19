@@ -8,7 +8,7 @@ body {
 	color: #666666;
 	background-size: cover;
 	background-image: linear-gradient(to bottom, rgba(180, 200, 255, 0.8), rgba(255, 255, 255, 0.9)),
-		url('./static/ben-kitching-QXcVpzt6pq0-unsplash.jpg');
+		url('../assets/ben-kitching-QXcVpzt6pq0-unsplash.jpg');
 }
 
 @tailwind base;
@@ -37,12 +37,20 @@ body {
 		transform: translate(-50%, -50%);
 	}
 
-	.blue-hover {
+	.blue-link {
 		@apply transition-all;
 		@apply duration-200;
 		@apply hover:text-blue-primary;
 		@apply hover:transform;
 		@apply hover:scale-110;
+		@apply active:scale-105; 
+		@apply active:translate-y-0.5;
+	}
+
+	.shadow-all {
+		@apply shadow;
+		@apply hover:shadow-lg;
+		@apply active:shadow-md;
 	}
 
 	.text-gray-default {

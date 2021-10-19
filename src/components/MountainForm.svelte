@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
+	import { mountains } from '../utils/mountainList'
 	export let id: number
 	export let pass: 'epic' | 'ikon'
 	let dispatch = createEventDispatcher<{formSubmitted: string, mountain: string}>()
@@ -8,83 +9,6 @@
 
 	$: if (pass){
 		mountain = mountains[pass][region][0]
-	}
-	let mountains = {
-		epic: {
-			east: [
-				'Attitash',
-				'Big Boulder',
-				'Crotched',
-				'Hunter',
-				'Jack Frost',
-				'Liberty',
-				'Mount Snow',
-				'Mount Sunapee',
-				'Okemo',
-				'Roundtop',
-				'Stowe',
-				'Whitetail',
-				'Wildcat'
-			],
-			midwest: [
-				'Afton Alps',
-				'Alpine Valley',
-				'Boston Mills',
-				'Brandywine',
-				'Hidden Valley',
-				'Mad River Mountain',
-				'Mt. Brighton',
-				'Paoli Peaks',
-				'Snow Creek',
-				'Wilmot'
-			],
-			rockies: [
-				'Beaver Creek',
-				'Brekenridge',
-				'Crested Butte',
-				'Keystone',
-				'Park City',
-				'Vail'
-			],
-			west: ['Heavenly', 'Kirkwood', 'Northstar', 'Stevens Pass']
-		},
-		ikon: {
-			east: [
-				'Killington',
-				'Loon Mountain',
-				'Pico',
-				'Snowshoe Mountain',
-				'Stratton',
-				'Sugarbush Resort',
-				'Sugarloaf',
-				'Sunday River'
-			],
-			midwest: ['Boyne Highlands', 'Boyne Mountain'],
-			rockies: [
-				'Alta',
-				'Arapahoe Basin Ski Area',
-				'Aspen Snowmass',
-				'Big Sky Resort',
-				'Brighton',
-				'Copper Mountain',
-				'Deer Valley Resort',
-				'Eldora Mountain Resort',
-				'Jackson Hole Mountain Resort',
-				'Snowbird',
-				'Solitude Mountain Resort',
-				'Steamboat',
-				'Taos Ski Valley',
-				'Winter Park Resort'
-			],
-			west: [
-				'Big Bear Mountain Resort',
-				'Crystal Mountain',
-				'June Mountain',
-				'Mammoth Mountain',
-				'Squaw Valley',
-				'The Summit at Snoqualmie'
-			]
-		}
 	}
 </script>
 
@@ -111,7 +35,7 @@
 			{/each}
 		</select>
 	</div>
-	<button class="go-button self-end ml-8 bg-gray-300 px-2 py-0.5 w-9 h-7 text-blue-primary rounded-sm transition-all duration-300 hover:text-gray-50 hover:transform hover:scale-105 hover:bg-blue-primary" 
+	<button class="go-button self-end ml-8 bg-gray-300 px-2 py-0.5 w-9 h-7 text-blue-primary shadow-all rounded-sm transition-all duration-300 hover:text-gray-50 hover:transform hover:scale-110 active:scale-105 hover:bg-blue-primary" 
 	on:click={() => { dispatch('formSubmitted', mountain)}} >
 		Go
 	</button>

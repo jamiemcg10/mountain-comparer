@@ -7,7 +7,7 @@
 	]
 </script>
 
-<div class="center w-4/5 p-[10%] bg-white opacity-80 rounded-lg">
+<div class="center w-4/5 p-[10%] bg-white/80 rounded-md shadow-sm">
 	<div class="text">
 		<h3 id="title" class="text-h3 text-blue-primary">How it works</h3>
 		<p>
@@ -27,7 +27,7 @@
 				alt="report icon"
 			/> icon to open that mountain's snow report for today.
 		</p>
-		<p>Got it? <a href="../compare/" class="blue-hover">Try it out!</a></p>
+		<p class="w-max inline">Got it?</p><p class="inline-block w-max ml-1.5 blue-link"><a href="../compare/">Try it out!</a></p>
 	</div>
 </div>
 
