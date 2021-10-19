@@ -1,20 +1,9 @@
-import { getWeather } from '../../utils/getWeather'
 import { APIKEY } from '../../../apk'
 
 
 export async function get({ params }) {
     
     const { slug } = params
-
-    console.log(slug)
-
-    // return {
-    //     body: {
-    //         weather: {test: 'text'}
-    //     }
-    // }
-
-    console.log(await sendWeatherRequest(slug))
 
     return {
         body: {

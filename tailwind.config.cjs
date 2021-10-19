@@ -3,14 +3,18 @@ module.exports = {
 	purge: ['./src/**/*.{svelte,css,html}'],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
+		screens: {
+			'sm': {max: '640px'},
+			// => @media (max-width: 640px) { ... }
+		  },
 		extend: {
 			backgroundColor: {
 				'blue-primary': '#3e6d89',
 				'blue-secondary': '#1e3a4a'
 			},
 			dropShadow: {
-				'gray-sm': '1px 1px 1px #666666',
-				'gray': '2px 2px 3px #666666',
+				'gray-sm': '1px 1px 1px #bbbbbb',
+				'gray': '2px 2px 3px #999999',
 			},
 			textColor: {
 				'blue-primary': '#3e6d89'

@@ -21,8 +21,18 @@ body {
 		font-weight: bold;
 	}
 
+	.text-h2 {
+		font-size: 3.5em;
+		font-weight: bold;
+	}
+
 	.text-h3 {
 		font-size: 2em;
+		font-weight: bold;
+	}
+
+	.text-h4 {
+		font-size: 1.5em;
 		font-weight: bold;
 	}
 
@@ -41,7 +51,7 @@ body {
 		@apply transition-all;
 		@apply duration-200;
 		@apply hover:text-blue-primary;
-		@apply hover:transform;
+		@apply hover:transform-gpu;
 		@apply hover:scale-110;
 		@apply active:scale-105; 
 		@apply active:translate-y-0.5;
@@ -55,5 +65,9 @@ body {
 
 	.text-gray-default {
 		color: #666666;
+	}
+
+	.bg-img-sm {
+		background-position: 35%;
 	}
 }

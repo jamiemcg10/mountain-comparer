@@ -4,6 +4,15 @@
 	let comps = []
 	let id=1
 
+	// don't use hover events if touchscreen
+	let isTouchscreen: boolean
+
+	try {
+		document.createEvent("TouchEvent")
+		isTouchscreen = true
+	} catch {
+		isTouchscreen = false
+	}
 	const addEmptyBox = () => {
 		comps = [...comps, {id: id}]
 		id++
@@ -31,7 +40,7 @@
 	<label class="text-blue-primary font-semibold">
 		Date
 		<select
-			class="shadow-sm text-gray-default block rounded cursor-pointer focus:outline-blue"
+			class="bg-white shadow-sm text-gray-default block rounded cursor-pointer focus:outline-blue"
 			on:change={() => {
 				resetPage()
 			}}
@@ -41,20 +50,21 @@
 			{/each}
 		</select>
 	</label>
-	<div class="self-center bg-gray-200/80 shadow-sm hover:bg-opacity-90 transition duration-200 rounded p-2">
+	<div class="self-center bg-gray-200/80 sm:mt-2 shadow-sm hover:bg-opacity-90 transition duration-200 rounded p-2">
 		<input name="pass" bind:group={pass} value="epic" type="radio" checked class="cursor-pointer" />
-		<label for="pass-epic" class="transition transition-font duration-200 hover:text-gray-700"
+		<label for="pass-epic" class="mr-2 transition transition-font duration-200 hover:text-gray-700"
 			>Epic</label
 		>
-		<input name="pass" bind:group={pass} value="ikon" type="radio" class="ml-2 cursor-pointer" />
-		<label for="pass-ikon" class="transition transition-font duration-200 hover:text-gray-700"
-			>Ikon</label
-		>
+		<div class="inline-block"><input name="pass" bind:group={pass} value="ikon" type="radio" class="cursor-pointer" />
+			<label for="pass-ikon" class="transition transition-font duration-200 hover:text-gray-700"
+				>Ikon</label
+			></div>
+		
 	</div>
 </div>
 
 <!-- body -->
-<div class="my-5">
+<div class="mt-5 mb-1">
 	{#each comps as _comp, i (_comp.id)}
 		<MountainBox id={i} {pass} 
 		on:close={()=> {
@@ -69,7 +79,10 @@
 <div>
 	<button
 		type="button"
-		class="bg-gray-200 px-2 py-1 rounded-sm w-24 h-8 bg-gray-300 text-blue-primary shadow transition-all duration-300 shadow-all hover:scale-110 active:scale-105 hover:text-gray-50 hover:bg-blue-primary"
+		class="bg-gray-200 px-2 py-1 rounded-sm w-24 h-8 bg-gray-300 text-blue-primary shadow transition-all duration-300 shadow-all transform-gpu active:scale-105"
+		class:hover:scale-110={!isTouchscreen}
+		class:hover:text-gray-50={!isTouchscreen}
+		class:hover:bg-blue-primary={!isTouchscreen}
 		class:hidden={comps.length >= 5}
 		on:click={() => addEmptyBox()}>+ Add row</button
 	>

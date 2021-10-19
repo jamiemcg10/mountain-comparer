@@ -96,8 +96,7 @@ export function getWeather(weatherObject: any, date: Date) {
 			mainIco = key
 		}
 	})
-
-	console.log(mainIco)
+	
 	weather.icon = iconMap.get(mainIco)
 
 	return weather

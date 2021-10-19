@@ -1,3 +1,15 @@
+# Mountain Comparer
+
+## Where should I go?
+
+A website to compare weather conditions at various ski resorts in the United States.
+
+[Live site](http://comparemountains.s3-website.us-east-2.amazonaws.com/ 'Mountain Comparer')
+
+_Jamie Smart 2021_
+
+
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
@@ -37,12 +49,8 @@ npm run build
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
 
-# Mountain Comparison
 
-## Where should I go?
 
-A website to compare weather conditions at various ski resorts in the United States.
-
-[Live site](http://comparemountains.s3-website.us-east-2.amazonaws.com/ 'Mountain Comparer')
-
-_Jamie Smart 2020_
+Future releases:
+* Add animation when box flips
+* Allow users to drag boxes to remove them
