@@ -5,7 +5,7 @@
 	import CloseButton from '../components/CloseButton.svelte'
 	import { DayWeather, getWeather } from '../utils/getWeather'
 	import { passMountains } from '../utils/passMountains'
-	export let pass: 'epic' | 'ikon' = 'epic' // this should probably be in a store
+	export let pass: 'epic' | 'ikon' = 'epic'
 
 	export let id: number
 
