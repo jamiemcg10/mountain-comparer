@@ -42,13 +42,13 @@ export function getWeather(weatherObject: any, date: Date) {
 	let weather = new DayWeather()
 
 	weatherObject['list'].forEach((hour) => {
-		let time = hour['dt']
+		let time = hour.dt * 1000
 		let currHour = new Date(time)
 		let day = currHour.getDate()
 		if (day === date.getDate()) {
 			// not filtering out days
-			let key = hour['weather']['0']['main']
-			let code = hour['weather']['0']['id']
+			let key = hour.weather['0']['main']
+			let code = hour.weather['0']['id']
 
 			if ((code >= 701) && (code <= 781)) {
 				key = 'Atmosphere'
