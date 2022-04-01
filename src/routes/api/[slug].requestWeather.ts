@@ -1,5 +1,4 @@
-import { APIKEY } from '../../../apk'
-
+import 'dotenv/config'
 
 export async function get({ params }) {
     
@@ -15,7 +14,7 @@ export async function get({ params }) {
 
 
 async function sendWeatherRequest(zipcode: string) {
-    const req = await fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&units=imperial&appid=${APIKEY}`)
+    const req = await fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&units=imperial&appid=${process.env.APIKEY}`)
     
     if (!req.ok){
         return null
