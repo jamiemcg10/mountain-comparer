@@ -44,8 +44,7 @@
 						return
 					}
 					
-					const response = await res.json()
-					console.log(response)
+					const response = await res.json()]
 					weather = getWeather(response.weather, new Date())
 					dataLoaded = true
 				})
