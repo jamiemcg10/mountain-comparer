@@ -3,7 +3,8 @@
 	import MountainForm from './MountainForm.svelte'
 	import MountainResults from './MountainResults.svelte'
 	import CloseButton from '../components/CloseButton.svelte'
-	import { DayWeather, getWeather } from '../utils/getWeather'
+	import { getWeather } from '../utils/getWeather'
+	import type { DayWeather } from '../utils/DayWeather'
 	import { passMountains } from '../utils/passMountains'
 	export let pass: 'epic' | 'ikon' = 'epic'
 
