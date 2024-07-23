@@ -34,14 +34,42 @@ export class DayWeather {
 	}
 }
 
+const iconMap = new Map([
+  ['Thunderstorm', '11d'],
+  ['Drizzle', '09d'],
+  ['Rain', '10d'],
+  ['Snow', '13d'],
+  ['Atmosphere', '50d'],
+  ['Clear', '01d'],
+  ['Clouds', '03d']
+])
+
+function checkHiAndLo(weather: any, hour: any){
+  if (!weather.hi || hour['main']['temp'] > weather.hi) {
+    weather.high = hour['main']['temp']
+  }
+  if (!weather.lo || hour['main']['temp'] < weather.lo) {
+    weather.low = hour['main']['temp']
+  }
+
+  return weather
+}
+
+function getIcon(icons: Record<string, number>){
+  const maxValue = Math.max(...Object.values(icons))
+
+  const maxIconEntry = Object.entries(icons).find(([_k, v]) => v === maxValue)
+
+  return maxIconEntry[0]
+}
+
 export function getWeather(weatherObject: any, date: Date) {
-	let high = null
-	let low = null
-	let icons = new Map()
-	let mainIco = null
+  let icons = {}
 	let weather = new DayWeather()
 
-	weatherObject['list'].forEach((hour) => {
+  console.log({weatherObject})
+
+	weatherObject['list']?.forEach((hour) => {
 		let time = hour.dt * 1000
 		let currHour = new Date(time)
 		let day = currHour.getDate()
@@ -53,50 +81,15 @@ export function getWeather(weatherObject: any, date: Date) {
 			if ((code >= 701) && (code <= 781)) {
 				key = 'Atmosphere'
 			}
-			if (icons.has(key)) {
-				icons.set(key, icons.get(key) + 1)
-			} else {
-				icons.set(key, 1)
-			}
-			if ((high == null) && (low == null)) {
-				high = hour['main']['temp']
-				low = hour['main']['temp']
-				weather.high = hour['main']['temp']
-				weather.low = hour['main']['temp']
-			} else {
-				if (hour['main']['temp'] > high) {
-					high = hour['main']['temp']
-					weather.high = hour['main']['temp']
-				}
-				if (hour['main']['temp'] < low) {
-					low = hour['main']['temp']
-					weather.low = hour['main']['temp']
-				}
-			}
+
+      icons[key] = icons[key] + 1 || 1
+
+      weather = checkHiAndLo(weather, hour)
 		}
 	})
 
 	// iterate through keys to decide which weather icon to use
-	let tempCount = 0
-	let iconMap = new Map([
-		['Thunderstorm', '11d'],
-		['Drizzle', '09d'],
-		['Rain', '10d'],
-		['Snow', '13d'],
-		['Atmosphere', '50d'],
-		['Clear', '01d'],
-		['Clouds', '03d']
-	])
-	icons.forEach((value, key) => {
-		if (mainIco == null) {
-			mainIco = key
-			tempCount = value
-		} else if (value > tempCount) {
-			tempCount = value
-			mainIco = key
-		}
-	})
-	
+  const mainIco = getIcon(icons)	
 	weather.icon = iconMap.get(mainIco)
 
 	return weather
