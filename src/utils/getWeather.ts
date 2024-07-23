@@ -67,8 +67,6 @@ export function getWeather(weatherObject: any, date: Date) {
   let icons = {}
 	let weather = new DayWeather()
 
-  console.log({weatherObject})
-
 	weatherObject['list']?.forEach((hour) => {
 		let time = hour.dt * 1000
 		let currHour = new Date(time)
