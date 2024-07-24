@@ -6,7 +6,7 @@
 	import { getWeather } from '../utils/getWeather'
 	import type { DayWeather } from '../utils/DayWeather'
 	import { passMountains } from '../utils/passMountains'
-	export let pass: 'epic' | 'ikon' = 'epic'
+	export let pass: Array<'Epic' | 'Ikon'> = ['Epic', 'Ikon']
 
 	export let id: number
 

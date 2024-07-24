@@ -1,16 +1,26 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
-	import { mountains } from '../utils/mountainList'
+	import { passMountains } from '../utils/passMountains'
 	import clsx from 'clsx'
 
 	export let id: number
-	export let pass: 'epic' | 'ikon'
+	export let pass: Array<'Epic' | 'Ikon'> = ['Epic', 'Ikon'] // reset default, maybe
 	let dispatch = createEventDispatcher<{ formSubmitted: string; mountain: string }>()
-	let region: 'east' | 'midwest' | 'rockies' | 'west' = 'east'
-	let mountain: string
+	let region: 'East' | 'Midwest' | 'Rockies' | 'West' = 'East'
+	let mountain: string = ''
 
-	$: if (pass) {
-		mountain = mountains[pass][region][0]
+	function getFilteredMountains() {
+		const filteredMountains = Object.entries(passMountains).filter(([_, details]) => {
+			return pass.includes(details.pass) && details.region === region
+		})
+
+		const filteredMountainsObj = Object.fromEntries(filteredMountains)
+
+		mountain = filteredMountainsObj[mountain] ? mountain : Object.keys(filteredMountainsObj)[0]
+
+		return filteredMountainsObj
 	}
 </script>
 
@@ -23,25 +33,27 @@
 			id={`region${id}`}
 			class="bg-white rounded cursor-pointer focus:outline-blue"
 			bind:value={region}
-			on:change={() => {
-				mountain = mountains[pass][region][0]
-			}}
 		>
-			<option value="east">East</option>
-			<option value="midwest">Midwest</option>
-			<option value="rockies">Rockies</option>
-			<option value="west">West</option>
+			<option value="East">East</option>
+			<option value="Midwest">Midwest</option>
+			<option value="Rockies">Rockies</option>
+			<option value="West">West</option>
 		</select>
 	</div>
 	<div class="mx-8 sm:mx-5">
 		<div>
 			<label class="text-blue-primary font-semibold" for={`mountain${id}`}>Mountain</label>
 		</div>
-		<select class="bg-white rounded cursor-pointer focus:outline-blue" bind:value={mountain}>
-			{#each mountains[pass][region] as mountain}
-				<option value={mountain}>{mountain}</option>
-			{/each}
-		</select>
+		{#key [pass, region]}
+			<select
+				class="bg-white w-44 rounded cursor-pointer focus:outline-blue"
+				bind:value={mountain}
+			>
+				{#each Object.keys(getFilteredMountains()) as mountain}
+					<option value={mountain}>{mountain}</option>
+				{/each}
+			</select>
+		{/key}
 	</div>
 	<button
 		class={clsx(

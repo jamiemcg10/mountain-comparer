@@ -2,7 +2,7 @@
 	import MountainBox from '../../components/MountainBox.svelte'
 	import clsx from 'clsx'
 
-	let pass: 'epic' | 'ikon' = 'epic'
+	let pass: Array<'Epic' | 'Ikon'> = ['Epic']
 	let comps = []
 	let id = 1
 
@@ -58,8 +58,8 @@
 		<input
 			name="pass"
 			bind:group={pass}
-			value="epic"
-			type="radio"
+			value="Epic"
+			type="checkbox"
 			checked
 			class="cursor-pointer"
 		/>
@@ -68,7 +68,13 @@
 			class="mr-2 transition transition-font duration-200 hover:text-gray-700">Epic</label
 		>
 		<div class="inline-block">
-			<input name="pass" bind:group={pass} value="ikon" type="radio" class="cursor-pointer" />
+			<input
+				name="pass"
+				bind:group={pass}
+				value="Ikon"
+				type="checkbox"
+				class="cursor-pointer"
+			/>
 			<label
 				for="pass-ikon"
 				class="transition transition-font duration-200 hover:text-gray-700">Ikon</label
