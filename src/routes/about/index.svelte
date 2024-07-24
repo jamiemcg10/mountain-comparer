@@ -8,7 +8,9 @@
 	]
 </script>
 
-<div class="center w-4/5 sm:w-full sm:h-full p-[10%] bg-white/80 sm:bg-white/50 rounded-md shadow-sm">
+<div
+	class="center w-4/5 sm:w-full sm:h-full p-[10%] bg-white/80 sm:bg-white/50 rounded-md shadow-sm"
+>
 	<div class="text">
 		<h3 id="title" class="text-h3 text-blue-primary">How it works</h3>
 		<p>
@@ -21,9 +23,14 @@
 			{/each}
 		</ol>
 		<p class="inline-block">That's it! You can also click the</p>
-		<div class="align-bottom inline-block w-5"><ReportIcon classes="text-blue-primary stroke-4 stroke-current" /></div>
-		<p class="inline"> icon to open that mountain's snow report for today.</p>
-		<p class="w-max inline">Got it?</p><p class="inline-block w-max ml-1.5 blue-link"><a href="../compare/">Try it out!</a></p>
+		<div class="align-bottom inline-block w-5">
+			<ReportIcon classes="text-blue-primary stroke-4 stroke-current" />
+		</div>
+		<p class="inline">icon to open that mountain's snow report for today.</p>
+		<p class="w-max inline">Got it?</p>
+		<p class="inline-block absolute w-max ml-1.5 blue-link">
+			<a href="../compare/">Try it out!</a>
+		</p>
 	</div>
 </div>
 

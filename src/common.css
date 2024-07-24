@@ -51,10 +51,11 @@ body {
 		@apply transition-all;
 		@apply duration-200;
 		@apply hover:text-blue-primary;
-		@apply hover:transform-gpu;
-		@apply hover:scale-110;
-		@apply active:scale-105; 
-		@apply active:translate-y-0.5;
+    @apply text-base;
+    @apply hover:text-[18px]; 
+    @apply active:text-[17px];
+    @apply w-max;
+    @apply m-auto;
 	}
 
 	.shadow-all {
@@ -70,4 +71,25 @@ body {
 	.bg-img-sm {
 		background-position: 35%;
 	}
+}
+
+@layer components {
+  .nav-div {
+    text-align: center;
+    position: relative;
+    width: 60px;
+    transition-duration: 200ms;
+    transition-property: all;
+    @apply text-white;
+    @apply hover:text-xl; 
+    @apply active:text-lg;
+    @apply text-base;
+  }
+
+  .nav-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
