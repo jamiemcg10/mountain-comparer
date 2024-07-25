@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { DayWeather } from '../utils/DayWeather'
+	import type { DayWeather } from '../utils/types/DayWeather'
 	import ReportIcon from '../components/ReportIcon.svelte'
 	import clsx from 'clsx'
 

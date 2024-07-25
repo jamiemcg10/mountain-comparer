@@ -1,5 +1,5 @@
-import { DayWeather } from "./DayWeather"
-import type { Hour } from "./Hour"
+import { DayWeather } from "./types/DayWeather"
+import type { Hour } from "./types/Hour"
 
 const iconMap = new Map([
   ['Thunderstorm', '11d'],

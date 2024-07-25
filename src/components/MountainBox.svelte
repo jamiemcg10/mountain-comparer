@@ -4,7 +4,7 @@
 	import MountainResults from './MountainResults.svelte'
 	import CloseButton from '../components/CloseButton.svelte'
 	import { getWeather } from '../utils/getWeather'
-	import type { DayWeather } from '../utils/DayWeather'
+	import type { DayWeather } from '../utils/types/DayWeather'
 	import { passMountains } from '../utils/passMountains'
 
 	export let passes: Set<'Epic' | 'Ikon'>
