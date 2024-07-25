@@ -1,28 +1,28 @@
 export class DayWeather {
-	private hi: number | null
-	private lo: number | null
+	private high: number | null
+	private low: number | null
 	private ico: string | null
 	
 	constructor() {
-		this.hi = null
-		this.lo = null
+		this.high = null
+		this.low = null
 		this.ico = null
 	}
 
-	set high(temp) {
-		this.hi = temp
+	set hi(temp) {
+		this.high = temp
 	}
 
-	get high() {
-		return this.hi
+	get hi() {
+		return this.high
 	}
 
-	set low(temp) {
-		this.lo = temp
+	set lo(temp) {
+		this.low = temp
 	}
 
-	get low() {
-		return this.lo
+	get lo() {
+		return this.low
 	}
 
 	set icon(ico) {

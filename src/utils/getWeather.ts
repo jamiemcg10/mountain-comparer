@@ -1,4 +1,5 @@
 import { DayWeather } from "./DayWeather"
+import type { Hour } from "./Hour"
 
 const iconMap = new Map([
   ['Thunderstorm', '11d'],
@@ -10,12 +11,12 @@ const iconMap = new Map([
   ['Clouds', '03d']
 ])
 
-function checkHiAndLo(weather: any, hour: any){
-  if (!weather.hi || hour['main']['temp'] > weather.hi) {
-    weather.high = hour['main']['temp']
+function checkHiAndLo(weather: DayWeather, hour: Hour){
+  if (!weather.hi || hour.main.temp > weather.hi) {
+    weather.hi = hour.main.temp
   }
-  if (!weather.lo || hour['main']['temp'] < weather.lo) {
-    weather.low = hour['main']['temp']
+  if (!weather.lo || hour.main.temp < weather.lo) {
+    weather.lo = hour.main.temp
   }
 
   return weather
@@ -33,10 +34,11 @@ export function getWeather(weatherObject: any, date: Date) {
   let icons = {}
 	let weather = new DayWeather()
 
-	weatherObject['list']?.forEach((hour) => {
+	weatherObject['list']?.forEach((hour: Hour) => {
 		let time = hour.dt * 1000
 		let currHour = new Date(time)
 		let day = currHour.getDate()
+
 		if (day === date.getDate()) {
 			// not filtering out days
 			let key = hour.weather['0']['main']

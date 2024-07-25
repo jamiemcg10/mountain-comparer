@@ -1,12 +1,14 @@
 <script lang="ts">
+	import { tick } from 'svelte'
 	import MountainBox from '../../components/MountainBox.svelte'
 	import clsx from 'clsx'
 
-	let pass: Array<'Epic' | 'Ikon'> = ['Epic']
+	let passes: Set<'Epic' | 'Ikon'> = new Set(['Epic'])
 	let comps = []
 	let id = 1
+	let reportDate: Date
 
-	// don't use hover events if touchscreen
+	// don't use hover events if touchscreen -- TODO
 	let isTouchscreen: boolean
 
 	try {
@@ -26,22 +28,23 @@
 		dates[i].setDate(dates[0].getDate() + i)
 	})
 
-	const resetPage = () => {
-		// reset page - delete all divs
+	const resetPage = async () => {
 		comps = []
+		await tick()
 		id = 1
 		addEmptyBox()
 	}
 
 	addEmptyBox()
 
-	$: if (pass) resetPage()
+	$: passesLocal = Array.from(passes)
 </script>
 
 <div class="flex justify-between flex-wrap shadow-sm">
 	<label class="text-blue-primary font-semibold">
 		Date
 		<select
+			bind:value={reportDate}
 			class="bg-white shadow-sm text-gray-default block rounded cursor-pointer focus:outline-blue"
 			on:change={() => {
 				resetPage()
@@ -55,22 +58,45 @@
 	<div
 		class="self-center bg-gray-200/80 sm:mt-2 shadow-sm hover:bg-opacity-90 transition duration-200 rounded p-2"
 	>
-		<input
-			name="pass"
-			bind:group={pass}
-			value="Epic"
-			type="checkbox"
-			checked
-			class="cursor-pointer"
-		/>
-		<label
-			for="pass-epic"
-			class="mr-2 transition transition-font duration-200 hover:text-gray-700">Epic</label
+		<div
+			class="inline-block"
+			on:click={() => {
+				if (passes.has('Epic')) {
+					passes.delete('Epic')
+					passes = passes
+				} else {
+					passes = passes.add('Epic')
+				}
+			}}
 		>
-		<div class="inline-block">
 			<input
+				bind:group={passesLocal}
 				name="pass"
-				bind:group={pass}
+				value="Epic"
+				type="checkbox"
+				checked
+				class="cursor-pointer"
+			/>
+			<label
+				for="pass-epic"
+				class="mr-2 transition transition-font duration-200 hover:text-gray-700">Epic</label
+			>
+		</div>
+
+		<div
+			class="inline-block"
+			on:click={() => {
+				if (passes.has('Ikon')) {
+					passes.delete('Ikon')
+					passes = passes
+				} else {
+					passes = passes.add('Ikon')
+				}
+			}}
+		>
+			<input
+				bind:group={passesLocal}
+				name="pass"
 				value="Ikon"
 				type="checkbox"
 				class="cursor-pointer"
@@ -83,12 +109,12 @@
 	</div>
 </div>
 
-<!-- body -->
 <div class="mt-5 mb-1">
 	{#each comps as _comp, i (_comp.id)}
 		<MountainBox
 			id={i}
-			{pass}
+			bind:passes
+			bind:date={reportDate}
 			on:close={() => {
 				comps.splice(i, 1)
 				comps = comps

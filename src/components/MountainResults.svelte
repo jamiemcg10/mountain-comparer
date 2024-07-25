@@ -10,8 +10,8 @@
 
 <div class="font-bold text-xl">{mountain}</div>
 <div class="flex w-full h-10 pl-12 sm:pl-0">
-	<div class="gray-500 text-4xl">{Math.round(weather.high)}&deg;/</div>
-	<div class="gray-500 text-2xl">{Math.round(weather.low)}&deg;</div>
+	<div class="gray-500 text-4xl">{Math.round(weather.hi)}&deg;/</div>
+	<div class="gray-500 text-2xl">{Math.round(weather.lo)}&deg;</div>
 
 	<img
 		src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`}
