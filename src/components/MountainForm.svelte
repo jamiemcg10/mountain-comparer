@@ -71,12 +71,12 @@
 	</div>
 	<button
 		class={clsx(
-			'self-end sm:mr-5 bg-gray-300 px-2 py-0.5 w-9 h-7 text-blue-primary rounded-sm transition-all duration-200',
+			'self-end sm:mr-5 sm:mb-1.5 bg-gray-300 px-2 w-9 h-6 text-blue-primary rounded-sm transition-all duration-200',
 			!goBtnDisabled && 'shadow-all',
 			!goBtnDisabled &&
-				'pointer:hover:text-gray-50 pointer:hover:w-10 pointer:hover:h-8 pointer:hover:bg-blue-primary pointer:hover:-ml-0.5',
+				'pointer:hover:text-gray-50 pointer:hover:w-10 pointer:hover:h-7 pointer:hover:bg-blue-primary pointer:hover:-ml-0.5',
 			!goBtnDisabled &&
-				'active:!w-9 active:!h-7 active:!ml-0 active:bg-blue-primary active:text-gray-50',
+				'active:!w-9 active:!h-6 active:!ml-0 active:bg-blue-primary active:text-gray-50',
 			goBtnDisabled && 'cursor-not-allowed bg-gray-200 text-gray-400'
 		)}
 		disabled={goBtnDisabled}
