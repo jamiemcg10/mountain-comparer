@@ -66,6 +66,12 @@
 }
 
 @layer components {
+  @media (pointer: fine) {
+    .nav-div {
+      @apply hover:text-xl;
+    }
+  }
+
   .nav-div {
     text-align: center;
     position: relative;
@@ -73,7 +79,6 @@
     transition-duration: 200ms;
     transition-property: all;
     @apply text-white;
-    @apply hover:text-xl; 
     @apply active:text-lg;
     @apply text-base;
   }
