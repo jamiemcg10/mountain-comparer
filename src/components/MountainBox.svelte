@@ -3,17 +3,19 @@
 	import MountainForm from './MountainForm.svelte'
 	import MountainResults from './MountainResults.svelte'
 	import CloseButton from '../components/CloseButton.svelte'
-	import { DayWeather, getWeather } from '../utils/getWeather'
+	import { getWeather } from '../utils/getWeather'
+	import type { DayWeather } from '../utils/types/DayWeather'
 	import { passMountains } from '../utils/passMountains'
-	export let pass: 'epic' | 'ikon' = 'epic'
 
+	export let passes: Set<'Epic' | 'Ikon'>
+	export let date // i dunno what type this is
 	export let id: number
 
 	const dispatch = createEventDispatcher<{ close: string }>()
 
 	let dataLoaded = false
 	let weather: DayWeather
-	let mountainName: string
+	let mountain: string
 	let reportLink: string
 </script>
 
@@ -31,9 +33,9 @@
 	{#if !dataLoaded}
 		<MountainForm
 			{id}
-			bind:pass
-			on:formSubmitted={({ detail: mountain }) => {
-				mountainName = mountain
+			bind:passes
+			bind:mountain
+			on:formSubmitted={() => {
 				let zipcode = passMountains[mountain]['zipcode']
 				reportLink = passMountains[mountain]['reportLink']
 
@@ -43,12 +45,12 @@
 					}
 
 					const response = await res.json()
-					weather = getWeather(response.weather, new Date())
+					weather = getWeather(response.weather, date)
 					dataLoaded = true
 				})
 			}}
 		/>
 	{:else}
-		<MountainResults {weather} mountain={mountainName} {reportLink} />
+		<MountainResults {weather} bind:mountain {reportLink} />
 	{/if}
 </div>
