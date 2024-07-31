@@ -39,7 +39,7 @@
 				let zipcode = passMountains[mountain]['zipcode']
 				reportLink = passMountains[mountain]['reportLink']
 
-				fetch(`../api/${zipcode}.requestWeather`).then(async (res) => {
+				fetch(`../api?zipcode=${zipcode}`).then(async (res) => {
 					if (!res.ok) {
 						return
 					}
