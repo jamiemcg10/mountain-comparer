@@ -1,4 +1,4 @@
-export let passMountains: Record<string, {
+export const passMountains: Record<string, {
   region: 'East' | 'Midwest' | 'Rockies' | 'West',
   zipcode: string,
   reportLink: string,

@@ -1,5 +1,6 @@
 import { DayWeather } from "./types/DayWeather"
 import type { Hour } from "./types/Hour"
+import { WeatherResponse } from "./types/WeatherResponse"
 
 const iconMap = new Map([
   ['Thunderstorm', '11d'],
@@ -30,19 +31,19 @@ function getIcon(icons: Record<string, number>){
   return maxIconEntry[0]
 }
 
-export function getWeather(weatherObject: any, date: Date) {
-  let icons = {}
+export function getWeather(weatherResponse: WeatherResponse, date: Date) {
+  const icons = {}
 	let weather = new DayWeather()
 
-	weatherObject['list']?.forEach((hour: Hour) => {
-		let time = hour.dt * 1000
-		let currHour = new Date(time)
-		let day = currHour.getDate()
+	weatherResponse['list']?.forEach((hour: Hour) => {
+		const time = hour.dt * 1000
+		const currHour = new Date(time)
+		const day = currHour.getDate()
 
 		if (day === date.getDate()) {
 			// not filtering out days
 			let key = hour.weather['0']['main']
-			let code = hour.weather['0']['id']
+			const code = hour.weather['0']['id']
 
 			if ((code >= 701) && (code <= 781)) {
 				key = 'Atmosphere'
