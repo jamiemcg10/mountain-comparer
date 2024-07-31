@@ -54,8 +54,7 @@ export const passMountains: Record<
 	'Mount Sunapee': {
 		region: 'East',
 		zipcode: '03255',
-		reportLink:
-			'https://www.mountsunapee.com/the-mountain/mountain-conditions/snow-report.aspx',
+		reportLink: 'https://www.mountsunapee.com/the-mountain/mountain-conditions/snow-report.aspx',
 		numTrails: 67,
 		pass: 'Epic'
 	},
@@ -208,8 +207,7 @@ export const passMountains: Record<
 	Keystone: {
 		region: 'Rockies',
 		zipcode: '80435',
-		reportLink:
-			'keystoneresort.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx',
+		reportLink: 'keystoneresort.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx',
 		numTrails: 128,
 		pass: 'Epic'
 	},
@@ -247,8 +245,7 @@ export const passMountains: Record<
 	'Stevens Pass': {
 		region: 'West',
 		zipcode: '98288',
-		reportLink:
-			'https://www.stevenspass.com/the-mountain/mountain-conditions/weather-report.aspx',
+		reportLink: 'https://www.stevenspass.com/the-mountain/mountain-conditions/weather-report.aspx',
 		numTrails: 52,
 		pass: 'Epic'
 	},
@@ -455,8 +452,7 @@ export const passMountains: Record<
 	'Crystal Mountain': {
 		region: 'West',
 		zipcode: '98022',
-		reportLink:
-			'https://www.crystalmountainresort.com/the-mountain/mountain-report-and-webcams#/',
+		reportLink: 'https://www.crystalmountainresort.com/the-mountain/mountain-report-and-webcams#/',
 		numTrails: 85,
 		pass: 'Ikon'
 	},

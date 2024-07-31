@@ -92,9 +92,8 @@
 				type="checkbox"
 				class="cursor-pointer"
 			/>
-			<label
-				for="pass-ikon"
-				class="transition transition-font duration-200 hover:text-gray-700">Ikon</label
+			<label for="pass-ikon" class="transition transition-font duration-200 hover:text-gray-700"
+				>Ikon</label
 			>
 		</div>
 	</div>

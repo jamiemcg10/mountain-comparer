@@ -49,5 +49,5 @@ npm run build
 
 Future releases:
 
--   Add animation when box flips
--   Allow users to drag boxes to remove them
+- Add animation when box flips
+- Allow users to drag boxes to remove them

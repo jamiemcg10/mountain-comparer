@@ -14,8 +14,8 @@
 	<div class="text">
 		<h3 id="title" class="text-h3 text-blue-primary">How it works</h3>
 		<p>
-			Compare the weather at different mountains on your pass. First, select the date you want
-			to look at and your pass. Then:
+			Compare the weather at different mountains on your pass. First, select the date you want to
+			look at and your pass. Then:
 		</p>
 		<ol class="pl-[20px] my-5">
 			{#each directions as direction}
