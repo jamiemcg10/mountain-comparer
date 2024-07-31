@@ -1,6 +1,6 @@
 import { DayWeather } from "./types/DayWeather"
 import type { Hour } from "./types/Hour"
-import { WeatherResponse } from "./types/WeatherResponse"
+import type { WeatherResponse } from "./types/WeatherResponse"
 
 const iconMap = new Map([
   ['Thunderstorm', '11d'],
