@@ -34,4 +34,4 @@ jobs:
               uses: bahmutov/npm-install@v1
 
             - name: 'Run svelte-check'
-              uses: npm run check
+              run: npm run check
