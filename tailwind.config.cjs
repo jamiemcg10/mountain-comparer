@@ -3,7 +3,7 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
 	mode: 'jit',
 	purge: ['./src/**/*.{svelte,css,html}'],
-	darkMode: false, // or 'media' or 'class'
+	darkMode: false, 
 	theme: {
 		screens: {
       'xs': {max: '400px'},

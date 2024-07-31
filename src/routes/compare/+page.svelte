@@ -8,15 +8,6 @@
 	let id = 1
 	let reportDate: Date
 
-	// don't use hover events if touchscreen -- TODO
-	let isTouchscreen: boolean
-
-	try {
-		document.createEvent('TouchEvent')
-		isTouchscreen = true
-	} catch {
-		isTouchscreen = false
-	}
 	const addEmptyBox = () => {
 		comps = [...comps, { id: id }]
 		id++
@@ -129,9 +120,8 @@
 		type="button"
 		class={clsx(
 			'px-2 py-1 rounded-sm w-24 mt-2 h-8 bg-gray-300 text-blue-primary shadow transition-all duration-200 shadow-all',
-			'active:h-8 active:w-24 active:mt-2 active:ml-0',
-			!isTouchscreen &&
-				'hover:-ml-1 hover:mt-1 hover:w-[6.5rem] hover:h-9 hover:text-gray-50 hover:bg-blue-primary'
+			'active:!h-8 active:!w-24 active:!mt-2 active:!ml-0',
+			'pointer:hover:-ml-1 pointer:hover:mt-1 pointer:hover:w-[6.5rem] pointer:hover:h-9 pointer:hover:text-gray-50 pointer:hover:bg-blue-primary'
 		)}
 		class:hidden={comps.length >= 5}
 		on:click={() => addEmptyBox()}>+ Add row</button

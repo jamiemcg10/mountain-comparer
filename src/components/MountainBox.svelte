@@ -8,7 +8,7 @@
 	import { passMountains } from '../utils/passMountains'
 
 	export let passes: Set<'Epic' | 'Ikon'>
-	export let date // i dunno what type this is
+	export let date: Date
 	export let id: number
 
 	const dispatch = createEventDispatcher<{ close: string }>()
