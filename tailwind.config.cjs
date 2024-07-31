@@ -3,12 +3,12 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
 	mode: 'jit',
 	purge: ['./src/**/*.{svelte,css,html}'],
-	darkMode: false, 
+	darkMode: false,
 	theme: {
 		screens: {
-      'xs': {max: '400px'},
-			'sm': {max: '640px'}
-		  },
+			xs: { max: '400px' },
+			sm: { max: '640px' }
+		},
 		extend: {
 			backgroundColor: {
 				'blue-primary': '#3e6d89',
@@ -16,7 +16,7 @@ module.exports = {
 			},
 			dropShadow: {
 				'gray-sm': '1px 1px 1px #bbbbbb',
-				'gray': '2px 2px 3px #999999',
+				gray: '2px 2px 3px #999999'
 			},
 			textColor: {
 				'blue-primary': '#3e6d89'
@@ -30,21 +30,21 @@ module.exports = {
 			},
 			outline: {
 				blue: '.125rem solid #3e6d89'
-			}, 
-			strokeWidth: {
-				'1.5': '1.5',
-				'4': '4'
 			},
-      screens:{
-        'touch': {'raw': '(pointer: coarse)'},
-        'pointer': {'raw': '(pointer: fine)'},
-      }
+			strokeWidth: {
+				1.5: '1.5',
+				4: '4'
+			},
+			screens: {
+				touch: { raw: '(pointer: coarse)' },
+				pointer: { raw: '(pointer: fine)' }
+			}
 		}
 	},
 	variants: {
 		extend: {
 			fontStyle: ['last'],
 			dropShadow: ['hover', 'active']
-		},
-	},
+		}
+	}
 }

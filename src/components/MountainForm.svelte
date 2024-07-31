@@ -46,7 +46,7 @@
 			<option value="West">West</option>
 		</select>
 	</div>
-	<div class="mr-8 sm:mr-5 sm:mb-1.5 ">
+	<div class="mr-8 sm:mr-5 sm:mb-1.5">
 		<div class="block xs:hidden">
 			<label class="text-blue-primary font-semibold" for={`mountain${id}`}>Mountain</label>
 		</div>

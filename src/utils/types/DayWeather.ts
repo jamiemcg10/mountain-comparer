@@ -2,7 +2,7 @@ export class DayWeather {
 	private high: number | null
 	private low: number | null
 	private ico: string | null
-	
+
 	constructor() {
 		this.high = null
 		this.low = null
