@@ -43,11 +43,11 @@
 		@apply transition-all;
 		@apply duration-200;
 		@apply hover:text-blue-primary;
-    @apply text-base;
-    @apply hover:text-[18px]; 
-    @apply active:text-[17px];
-    @apply w-max;
-    @apply m-auto;
+		@apply text-base;
+		@apply hover:text-[18px];
+		@apply active:text-[17px];
+		@apply w-max;
+		@apply m-auto;
 	}
 
 	.shadow-all {
@@ -66,27 +66,27 @@
 }
 
 @layer components {
-  @media (pointer: fine) {
-    .nav-div {
-      @apply hover:text-xl;
-    }
-  }
+	@media (pointer: fine) {
+		.nav-div {
+			@apply hover:text-xl;
+		}
+	}
 
-  .nav-div {
-    text-align: center;
-    position: relative;
-    width: 60px;
-    transition-duration: 200ms;
-    transition-property: all;
-    @apply text-white;
-    @apply active:text-lg;
-    @apply text-base;
-  }
+	.nav-div {
+		text-align: center;
+		position: relative;
+		width: 60px;
+		transition-duration: 200ms;
+		transition-property: all;
+		@apply text-white;
+		@apply active:text-lg;
+		@apply text-base;
+	}
 
-  .nav-link {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+	.nav-link {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 }

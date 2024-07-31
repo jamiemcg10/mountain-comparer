@@ -8,8 +8,6 @@ A website to compare weather conditions at various ski resorts in the United Sta
 
 _Jamie Smart 2021_
 
-
-
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
@@ -49,8 +47,7 @@ npm run build
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
 
-
-
 Future releases:
-* Add animation when box flips
-* Allow users to drag boxes to remove them
+
+-   Add animation when box flips
+-   Allow users to drag boxes to remove them
