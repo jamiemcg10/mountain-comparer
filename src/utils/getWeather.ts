@@ -26,7 +26,7 @@ function checkHiAndLo(weather: DayWeather, hour: Hour){
 function getIcon(icons: Record<string, number>){
   const maxValue = Math.max(...Object.values(icons))
 
-  const maxIconEntry = Object.entries(icons).find(([_k, v]) => v === maxValue)
+  const maxIconEntry = Object.entries(icons).find(([_, v]) => v === maxValue)
 
   return maxIconEntry[0]
 }
