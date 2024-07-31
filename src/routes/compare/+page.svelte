@@ -26,6 +26,15 @@
 		addEmptyBox()
 	}
 
+	const togglePass = (pass: 'Epic' | 'Ikon') => {
+		if (passes.has(pass)) {
+			passes.delete(pass)
+			passes = passes
+		} else {
+			passes = passes.add(pass)
+		}
+	}
+
 	addEmptyBox()
 
 	$: passesLocal = Array.from(passes)
@@ -51,14 +60,15 @@
 	>
 		<div
 			class="inline-block"
-			on:click={() => {
-				if (passes.has('Epic')) {
-					passes.delete('Epic')
-					passes = passes
-				} else {
-					passes = passes.add('Epic')
+			tabindex="0"
+			role="checkbox"
+			aria-checked={passes.has('Epic')}
+			on:keyup={({ key }) => {
+				if (key === 'Enter') {
+					togglePass('Epic')
 				}
 			}}
+			on:click={() => togglePass('Epic')}
 		>
 			<input
 				bind:group={passesLocal}
@@ -70,20 +80,22 @@
 			/>
 			<label
 				for="pass-epic"
-				class="mr-2 transition transition-font duration-200 hover:text-gray-700">Epic</label
+				class="mr-2 transition transition-font duration-200 hover:text-gray-700"
+				>Epic</label
 			>
 		</div>
 
 		<div
 			class="inline-block"
-			on:click={() => {
-				if (passes.has('Ikon')) {
-					passes.delete('Ikon')
-					passes = passes
-				} else {
-					passes = passes.add('Ikon')
+			tabindex="0"
+			role="checkbox"
+			aria-checked={passes.has('Ikon')}
+			on:keyup={({ key }) => {
+				if (key === 'Enter') {
+					togglePass('Ikon')
 				}
 			}}
+			on:click={() => togglePass('Ikon')}
 		>
 			<input
 				bind:group={passesLocal}
@@ -92,7 +104,9 @@
 				type="checkbox"
 				class="cursor-pointer"
 			/>
-			<label for="pass-ikon" class="transition transition-font duration-200 hover:text-gray-700"
+			<label
+				for="pass-ikon"
+				class="transition transition-font duration-200 hover:text-gray-700"
 				>Ikon</label
 			>
 		</div>
