@@ -17,6 +17,7 @@
 	let weather: DayWeather
 	let mountain: string
 	let reportLink: string
+	let trailLink: string
 </script>
 
 <div
@@ -37,7 +38,8 @@
 			bind:mountain
 			on:formSubmitted={() => {
 				let zipcode = passMountains[mountain]['zipcode']
-				reportLink = passMountains[mountain]['reportLink']
+				reportLink = passMountains[mountain]['trailReportLink']
+				trailLink = passMountains[mountain]['snowReportLink']
 
 				fetch(`../api?zipcode=${zipcode}`).then(async (res) => {
 					if (!res.ok) {
@@ -51,6 +53,6 @@
 			}}
 		/>
 	{:else}
-		<MountainResults {weather} bind:mountain {reportLink} />
+		<MountainResults {weather} bind:mountain {reportLink} {trailLink} />
 	{/if}
 </div>

@@ -2,10 +2,12 @@
 	import type { DayWeather } from '../utils/types/DayWeather'
 	import ReportIcon from '../components/ReportIcon.svelte'
 	import clsx from 'clsx'
+	import MountainIcon from './MountainIcon.svelte'
 
 	export let weather: DayWeather
 	export let mountain: string
 	export let reportLink: string
+	export let trailLink: string = ''
 </script>
 
 <div class="font-bold text-xl">{mountain}</div>
@@ -18,22 +20,42 @@
 		alt="weather icon"
 		class="w-24 h-24 -mt-6"
 	/>
-	{#if reportLink}
-		<a
-			href={reportLink}
-			rel="noreferrer noopener"
-			target="__blank"
-			class={clsx(
-				'ml-auto mr-24 sm:mr-8 transition-all duration-200 w-8 text-blue-primary',
-				'hover:mr-[5.85rem] sm:hover:mr-[1.875rem] hover:-mt-0.5 hover:w-9',
-				'active:w-8 active:mr-24 sm:active:mr-8 active:mt-0'
-			)}
-		>
-			<div>
-				<ReportIcon
-					classes="stroke-4 stroke-current filter hover:drop-shadow-gray-sm"
-				/>
-			</div>
-		</a>
-	{/if}
+	<div
+		class="relative w-24 ml-auto mr-24 sm:mr-8 text-blue-primary flex space-x-4 xs:w-10"
+	>
+		{#if trailLink}
+			<a
+				href={trailLink}
+				rel="noreferrer noopener"
+				target="__blank"
+				class={clsx(
+					'absolute left-0 w-10 block transition-all duration-200',
+					'pointer:hover:w-11 pointer:hover:-mt-0.5',
+					'pointer:active:w-10 pointer:active:mt-0'
+				)}
+			>
+				<div>
+					<MountainIcon
+						class="stroke-4 stroke-current filter hover:drop-shadow-gray-sm"
+					/>
+				</div>
+			</a>
+		{/if}
+		{#if reportLink}
+			<a
+				href={reportLink}
+				rel="noreferrer noopener"
+				target="__blank"
+				class={clsx(
+					'absolute right-0 mt-0 w-10 block transition-all duration-200 xs:hidden',
+					'pointer:hover:w-11 pointer:hover:-mt-1 pointer:hover:-right-1',
+					'pointer:active:!w-10 pointer:active:!mt-0 pointer:active:!right-0'
+				)}
+			>
+				<div>
+					<ReportIcon class="stroke-4 fill-current hover:drop-shadow-gray-sm" />
+				</div>
+			</a>
+		{/if}
+	</div>
 </div>
