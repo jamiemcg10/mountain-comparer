@@ -38,8 +38,8 @@
 			bind:mountain
 			on:formSubmitted={() => {
 				let zipcode = passMountains[mountain]['zipcode']
-				reportLink = passMountains[mountain]['trailReportLink']
-				trailLink = passMountains[mountain]['snowReportLink']
+				reportLink = passMountains[mountain]['snowReportLink']
+				trailLink = passMountains[mountain]['trailReportLink']
 
 				fetch(`../api?zipcode=${zipcode}`).then(async (res) => {
 					if (!res.ok) {
