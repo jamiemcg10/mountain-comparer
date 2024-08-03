@@ -80,7 +80,7 @@
 			/>
 			<label
 				for="pass-epic"
-				class="mr-2 transition transition-font duration-200 hover:text-gray-700"
+				class="mr-2 cursor-pointer transition transition-font duration-200 hover:text-gray-700"
 				>Epic</label
 			>
 		</div>
@@ -106,7 +106,7 @@
 			/>
 			<label
 				for="pass-ikon"
-				class="transition transition-font duration-200 hover:text-gray-700"
+				class="cursor-pointer transition transition-font duration-200 hover:text-gray-700"
 				>Ikon</label
 			>
 		</div>

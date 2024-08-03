@@ -7,13 +7,18 @@
 	export let passes: Set<'Epic' | 'Ikon'>
 	export let mountain = ''
 
-	let dispatch = createEventDispatcher<{ formSubmitted: string; mountain: string }>()
+	let dispatch = createEventDispatcher<{
+		formSubmitted: string
+		mountain: string
+	}>()
 	let region: 'East' | 'Midwest' | 'Rockies' | 'West' | '' = ''
 
 	function getFilteredMountains() {
-		const filteredMountains = Object.entries(passMountains).filter(([_, details]) => {
-			return passes.has(details.pass) && details.region === region
-		})
+		const filteredMountains = Object.entries(passMountains).filter(
+			([_, details]) => {
+				return passes.has(details.pass) && details.region === region
+			}
+		)
 
 		const filteredMountainsObj = Object.fromEntries(filteredMountains)
 
@@ -29,13 +34,18 @@
 	$: goBtnDisabled = !passes.size || !region || !mountain
 </script>
 
-<div class="box-content flex sm:flex-wrap absolute left-0 top-1/2 -translate-y-1/2 ml-8 sm:ml-5">
+<div
+	class="box-content flex sm:flex-wrap absolute left-0 top-1/2 -translate-y-1/2 ml-8 sm:ml-5"
+>
 	<div class="sm:mr-5 mr-8 sm:mb-1.5">
 		<div class="block xs:hidden">
-			<label class="text-blue-primary font-semibold" for={`region${id}`}>Region</label>
+			<label class="text-blue-primary font-semibold" for={`region-${id}`}
+				>Region</label
+			>
 		</div>
 		<select
 			id={`region${id}`}
+			aria-label="region"
 			class="bg-white rounded cursor-pointer focus:outline-blue"
 			bind:value={region}
 		>
@@ -48,7 +58,9 @@
 	</div>
 	<div class="mr-8 sm:mr-5 sm:mb-1.5">
 		<div class="block xs:hidden">
-			<label class="text-blue-primary font-semibold" for={`mountain${id}`}>Mountain</label>
+			<label class="text-blue-primary font-semibold" for={`mountain-${id}`}
+				>Mountain</label
+			>
 		</div>
 		{#key [passes, region]}
 			<select
@@ -56,6 +68,7 @@
 					'bg-white w-44 rounded cursor-pointer focus:outline-blue',
 					!passes.size && 'cursor-not-allowed'
 				)}
+				aria-label="mountain"
 				bind:value={mountain}
 				disabled={!passes.size || !region}
 			>
