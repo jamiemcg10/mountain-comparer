@@ -69,7 +69,6 @@
 				}
 			}}
 			on:click={() => togglePass('Epic')}
-			on:pointerup={() => togglePass('Epic')}
 		>
 			<input
 				bind:group={passesLocal}
@@ -83,7 +82,7 @@
 			<label
 				for="pass-epic"
 				class="mr-2 cursor-pointer transition transition-font duration-200 hover:text-gray-700"
-				>Epic</label
+				on:pointerup={() => togglePass('Epic')}>Epic</label
 			>
 		</div>
 
@@ -98,7 +97,6 @@
 				}
 			}}
 			on:click={() => togglePass('Ikon')}
-			on:pointerup={() => togglePass('Ikon')}
 		>
 			<input
 				bind:group={passesLocal}
@@ -111,7 +109,7 @@
 			<label
 				for="pass-ikon"
 				class="cursor-pointer transition transition-font duration-200 hover:text-gray-700"
-				>Ikon</label
+				on:pointerup={() => togglePass('Ikon')}>Ikon</label
 			>
 		</div>
 	</div>
