@@ -72,6 +72,7 @@
 		>
 			<input
 				bind:group={passesLocal}
+				id="pass-epic"
 				name="pass"
 				value="Epic"
 				type="checkbox"
@@ -99,6 +100,7 @@
 		>
 			<input
 				bind:group={passesLocal}
+				id="pass-ikon"
 				name="pass"
 				value="Ikon"
 				type="checkbox"
