@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MountainIcon from '../../components/MountainIcon.svelte'
 	import ReportIcon from '../../components/ReportIcon.svelte'
 	const directions = [
 		'Select a region of the country',
@@ -14,8 +15,8 @@
 	<div class="text">
 		<h3 id="title" class="text-h3 text-blue-primary">How it works</h3>
 		<p>
-			Compare the weather at different mountains on your pass. First, select the date you want to
-			look at and your pass. Then:
+			Compare the weather at different mountains on your pass. First, select the
+			date you want to look at and your pass. Then:
 		</p>
 		<ol class="pl-[20px] my-5">
 			{#each directions as direction}
@@ -23,11 +24,16 @@
 			{/each}
 		</ol>
 		<p class="inline-block">That's it! You can also click the</p>
-		<div class="align-bottom inline-block w-5">
-			<ReportIcon classes="text-blue-primary stroke-4 stroke-current" />
+		<div class="align-bottom inline-block w-6 -mx-1 xs:hidden">
+			<ReportIcon class="text-blue-primary stroke-4 fill-current" />
 		</div>
-		<p class="inline">icon to open that mountain's snow report for today.</p>
-		<p class="w-max inline">Got it?</p>
+		<p class="inline xs:hidden">
+			icon to open that mountain's snow report or the
+		</p>
+		<div class="align-text-top inline-block w-5 -mx-0.5">
+			<MountainIcon class="text-blue-primary stroke-4 stroke-current" />
+		</div>
+		<p class="inline">icon to see that mountain's trail status. Got it?</p>
 		<p class="inline-block absolute w-max ml-1.5 blue-link">
 			<a href="../compare/">Try it out!</a>
 		</p>
