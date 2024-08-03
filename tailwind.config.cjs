@@ -11,7 +11,7 @@ module.exports = {
 		},
 		extend: {
 			backgroundColor: {
-				'blue-primary': '#3e6d89',
+				'blue-primary': '#366077',
 				'blue-secondary': '#1e3a4a'
 			},
 			dropShadow: {
@@ -19,7 +19,7 @@ module.exports = {
 				gray: '2px 2px 3px #999999'
 			},
 			textColor: {
-				'blue-primary': '#3e6d89'
+				'blue-primary': '#366077'
 			},
 			transitionProperty: {
 				width: 'width',
@@ -29,7 +29,7 @@ module.exports = {
 				scale: 'scale'
 			},
 			outline: {
-				blue: '.125rem solid #3e6d89'
+				blue: '.125rem solid #366077'
 			},
 			strokeWidth: {
 				1.5: '1.5',

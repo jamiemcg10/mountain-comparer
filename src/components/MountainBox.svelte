@@ -23,14 +23,20 @@
 <div
 	class="relative m-auto shadow-sm my-3 sm:my-2 p-2 w-[85%] sm:w-full min-w-[280px] h-24 bg-gray-200 bg-opacity-70 hover:bg-opacity-90 transition duration-200 rounded-md"
 >
-	<button
+	<div
+		role="button"
+		aria-label="close"
+		tabindex="0"
 		class="relative z-10 block float-right w-3.5"
+		on:keyup={({ key }) => {
+			if (key === 'Enter') dispatch('close')
+		}}
 		on:click={() => {
 			dispatch('close')
 		}}
 	>
 		<CloseButton />
-	</button>
+	</div>
 	{#if !dataLoaded}
 		<MountainForm
 			{id}
