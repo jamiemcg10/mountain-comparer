@@ -47,7 +47,7 @@
 				reportLink = passMountains[mountain]['snowReportLink']
 				trailLink = passMountains[mountain]['trailReportLink']
 
-				fetch(`../api?zipcode=${zipcode}`).then(async (res) => {
+				fetch(`../api/weather?zipcode=${zipcode}`).then(async (res) => {
 					if (!res.ok) {
 						return
 					}
