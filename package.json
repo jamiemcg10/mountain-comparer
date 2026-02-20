@@ -35,7 +35,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@genkit-ai/google-genai": "^1.28.0",
+		"@genkit-ai/google-genai": "^1.29.0",
 		"genkit": "^1.28.0"
 	}
 }

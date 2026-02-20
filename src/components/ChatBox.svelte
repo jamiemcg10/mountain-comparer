@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from './Button.svelte'
+
 	function handleChatMessage() {
 		console.log({ chatInput })
 		messages = [...messages, chatInput]
@@ -43,6 +45,6 @@
 				}
 			}}
 		/>
-		<button class="right" on:click={handleChatMessage}>Send</button>
+		<Button class="block ml-auto" on:click={handleChatMessage}>Send</Button>
 	</div>
 </div>

@@ -10,6 +10,14 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		adapter: vercel()
+	},
+	vite: {
+		ssr: {
+			noExternal: ['@genkit-ai/google-genai']
+		},
+		optimizeDeps: {
+			include: ['@genkit-ai/google-genai']
+		}
 	}
 }
 
