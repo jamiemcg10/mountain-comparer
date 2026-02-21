@@ -24,9 +24,7 @@
 >
 	<RegionSelect bind:region bind:id />
 
-	{#key [passes, region]}
-		<MountainSelect bind:passes bind:region bind:mountain bind:id />
-	{/key}
+	<MountainSelect bind:passes bind:region bind:mountain bind:id />
 
 	<Button
 		class="self-end"

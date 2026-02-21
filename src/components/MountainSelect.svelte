@@ -8,7 +8,7 @@
 	export let region: Region
 	export let mountain: string
 
-	function getFilteredMountains() {
+	function getFilteredMountains(passes: Set<Pass>, region: Region) {
 		const filteredMountains = Object.entries(passMountains).filter(
 			([_, details]) => {
 				return passes.has(details.pass) && details.region === region
@@ -21,6 +21,8 @@
 
 		return filteredMountainsObj
 	}
+
+	$: mountains = getFilteredMountains(passes, region)
 </script>
 
 <div class="mr-8 sm:mr-5 sm:mb-1.5">
@@ -39,7 +41,7 @@
 		disabled={!passes.size || !region}
 	>
 		<option value="" selected>Select mountain</option>
-		{#each Object.keys(getFilteredMountains()) as mountain}
+		{#each Object.keys(mountains) as mountain}
 			<option value={mountain}>{mountain}</option>
 		{/each}
 	</select>
