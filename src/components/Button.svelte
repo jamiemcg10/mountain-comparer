@@ -8,7 +8,7 @@
 	{disabled}
 	class={clsx(
 		$$props.class,
-		'h-[fit-content] px-2 py-1 bg-gray-300 text-blue-primary rounded-sm transition-all duration-200',
+		'h-fit px-2 py-1 bg-gray-300 text-blue-primary rounded-xs transition-all duration-200',
 		'pointer:hover:text-gray-50 pointer:hover:bg-blue-primary',
 		'active:bg-blue-primary active:text-gray-50',
 		disabled &&

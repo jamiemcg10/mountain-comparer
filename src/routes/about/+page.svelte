@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="center w-4/5 sm:w-full sm:h-full p-[10%] bg-white/80 sm:bg-white/50 rounded-md shadow-sm"
+	class="center w-4/5 sm:w-full sm:h-full p-[10%] bg-white/80 sm:bg-white/50 rounded-md shadow-xs"
 >
 	<div class="text">
 		<h3 id="title" class="text-h3 text-blue-primary">How it works</h3>

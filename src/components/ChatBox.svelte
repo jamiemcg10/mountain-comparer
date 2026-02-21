@@ -36,7 +36,7 @@
 	</div>
 	<div>
 		<textarea
-			class="w-full p-1 resize-none mt-2 focus-visible:outline-blue rounded-sm"
+			class="w-full p-1 resize-none mt-2 focus-visible:outline-blue rounded-xs"
 			bind:value={chatInput}
 			placeholder="Chat with the guide"
 			on:keyup={(e) => {

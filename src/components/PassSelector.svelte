@@ -16,7 +16,7 @@
 </script>
 
 <div
-	class="self-center bg-gray-200/80 sm:mt-2 shadow-sm hover:bg-opacity-90 transition duration-200 rounded p-2"
+	class="self-center bg-gray-200/80 sm:mt-2 shadow-xs hover:bg-opacity-90 transition duration-200 rounded-sm p-2"
 >
 	<div
 		class="inline-block"

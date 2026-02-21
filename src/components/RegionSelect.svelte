@@ -14,7 +14,7 @@
 	<select
 		id={`region${id}`}
 		aria-label="region"
-		class="bg-white rounded cursor-pointer focus:outline-blue"
+		class="bg-white rounded-sm cursor-pointer focus:outline-blue"
 		bind:value={region}
 	>
 		<option value="">Select region</option>

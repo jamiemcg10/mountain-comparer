@@ -49,7 +49,7 @@
 				class={clsx(
 					'absolute right-0 mt-0 w-10 block transition-all duration-200 xs:hidden',
 					'pointer:hover:w-11 pointer:hover:-mt-1 pointer:hover:-right-1',
-					'pointer:active:!w-10 pointer:active:!mt-0 pointer:active:!right-0'
+					'pointer:active:w-10! pointer:active:mt-0! pointer:active:right-0!'
 				)}
 			>
 				<div>

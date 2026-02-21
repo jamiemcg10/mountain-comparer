@@ -33,7 +33,7 @@
 	</div>
 	<select
 		class={clsx(
-			'bg-white w-44 rounded cursor-pointer focus:outline-blue',
+			'bg-white w-44 rounded-sm cursor-pointer focus:outline-blue',
 			!passes.size && 'cursor-not-allowed'
 		)}
 		aria-label="mountain"
