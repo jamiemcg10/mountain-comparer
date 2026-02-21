@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { tick } from 'svelte'
 	import MountainBox from '../../components/MountainBox.svelte'
-	import clsx from 'clsx'
 	import ChatBox from '../../components/ChatBox.svelte'
+	import Button from '../../components/Button.svelte'
 
 	let passes: Set<'Epic' | 'Ikon'> = new Set(['Epic'])
 	let mountains = []
@@ -133,18 +133,9 @@
 		</div>
 
 		<!-- remove button if 5 boxes on screen -->
-		<div>
-			<button
-				type="button"
-				class={clsx(
-					'px-2 py-1 rounded-sm w-24 mt-2 h-8 bg-gray-300 text-blue-primary shadow transition-all duration-200 shadow-all',
-					'active:!h-8 active:!w-24 active:!mt-2 active:!ml-0',
-					'pointer:hover:-ml-1 pointer:hover:mt-1 pointer:hover:w-[6.5rem] pointer:hover:h-9 pointer:hover:text-gray-50 pointer:hover:bg-blue-primary'
-				)}
-				class:hidden={mountains.length >= 5}
-				on:click={() => addEmptyBox()}>+ Add row</button
-			>
-		</div>
+		<Button disabled={mountains.length >= 5} on:click={() => addEmptyBox()}>
+			+ Add row
+		</Button>
 	</div>
 	<ChatBox />
 </div>
