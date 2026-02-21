@@ -4,6 +4,7 @@
 	import ChatBox from '../../components/ChatBox.svelte'
 	import Button from '../../components/Button.svelte'
 	import PassSelector from '../../components/PassSelector.svelte'
+	import DateSelector from '../../components/DateSelector.svelte'
 
 	let passes: Set<'Epic' | 'Ikon'> = new Set(['Epic'])
 	let mountains = []
@@ -14,12 +15,6 @@
 		mountains = [...mountains, { id: id }]
 		id++
 	}
-
-	let dates = [new Date(), new Date(), new Date(), new Date(), new Date()]
-
-	dates.forEach((_date, i) => {
-		dates[i].setDate(dates[0].getDate() + i)
-	})
 
 	const resetPage = async () => {
 		mountains = []
@@ -34,20 +29,7 @@
 <div class="h-full flex gap-x-4">
 	<div class="flex-grow">
 		<div class="flex justify-between flex-wrap shadow-sm">
-			<label class="text-blue-primary font-semibold">
-				Date
-				<select
-					bind:value={reportDate}
-					class="bg-white shadow-sm text-gray-default block rounded cursor-pointer focus:outline-blue"
-					on:change={() => {
-						resetPage()
-					}}
-				>
-					{#each dates as date}
-						<option value={date}>{date.toLocaleDateString()}</option>
-					{/each}
-				</select>
-			</label>
+			<DateSelector bind:reportDate on:change={resetPage} />
 			<PassSelector bind:passes />
 		</div>
 
@@ -66,7 +48,7 @@
 		</div>
 
 		<!-- remove button if 5 boxes on screen -->
-		<Button disabled={mountains.length >= 5} on:click={() => addEmptyBox()}>
+		<Button disabled={mountains.length >= 5} on:click={addEmptyBox}>
 			+ Add row
 		</Button>
 	</div>
