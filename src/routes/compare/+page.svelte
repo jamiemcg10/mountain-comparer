@@ -3,6 +3,7 @@
 	import MountainBox from '../../components/MountainBox.svelte'
 	import ChatBox from '../../components/ChatBox.svelte'
 	import Button from '../../components/Button.svelte'
+	import PassSelector from '../../components/PassSelector.svelte'
 
 	let passes: Set<'Epic' | 'Ikon'> = new Set(['Epic'])
 	let mountains = []
@@ -27,18 +28,7 @@
 		addEmptyBox()
 	}
 
-	const togglePass = (pass: 'Epic' | 'Ikon') => {
-		if (passes.has(pass)) {
-			passes.delete(pass)
-			passes = passes
-		} else {
-			passes = passes.add(pass)
-		}
-	}
-
 	addEmptyBox()
-
-	$: passesLocal = Array.from(passes)
 </script>
 
 <div class="h-full flex gap-x-4">
@@ -58,64 +48,7 @@
 					{/each}
 				</select>
 			</label>
-			<div
-				class="self-center bg-gray-200/80 sm:mt-2 shadow-sm hover:bg-opacity-90 transition duration-200 rounded p-2"
-			>
-				<div
-					class="inline-block"
-					tabindex="0"
-					role="checkbox"
-					aria-checked={passes.has('Epic')}
-					on:keyup={({ key }) => {
-						if (key === 'Enter') {
-							togglePass('Epic')
-						}
-					}}
-					on:click={() => togglePass('Epic')}
-				>
-					<input
-						bind:group={passesLocal}
-						id="pass-epic"
-						name="pass"
-						value="Epic"
-						type="checkbox"
-						checked
-						class="cursor-pointer"
-					/>
-					<label
-						for="pass-epic"
-						class="mr-2 cursor-pointer transition transition-font duration-200 hover:text-gray-700"
-						on:pointerup={() => togglePass('Epic')}>Epic</label
-					>
-				</div>
-
-				<div
-					class="inline-block"
-					tabindex="0"
-					role="checkbox"
-					aria-checked={passes.has('Ikon')}
-					on:keyup={({ key }) => {
-						if (key === 'Enter') {
-							togglePass('Ikon')
-						}
-					}}
-					on:click={() => togglePass('Ikon')}
-				>
-					<input
-						bind:group={passesLocal}
-						id="pass-ikon"
-						name="pass"
-						value="Ikon"
-						type="checkbox"
-						class="cursor-pointer"
-					/>
-					<label
-						for="pass-ikon"
-						class="cursor-pointer transition transition-font duration-200 hover:text-gray-700"
-						on:pointerup={() => togglePass('Ikon')}>Ikon</label
-					>
-				</div>
-			</div>
+			<PassSelector bind:passes />
 		</div>
 
 		<div class="mt-5 mb-1">
