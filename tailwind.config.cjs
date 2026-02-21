@@ -1,9 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-	mode: 'jit',
-	purge: ['./src/**/*.{svelte,css,html}'],
-	darkMode: false,
+	content: ['./src/**/*.{svelte,css,html}'],
 	theme: {
 		screens: {
 			xs: { max: '400px' },
@@ -39,12 +37,6 @@ module.exports = {
 				touch: { raw: '(pointer: coarse)' },
 				pointer: { raw: '(pointer: fine)' }
 			}
-		}
-	},
-	variants: {
-		extend: {
-			fontStyle: ['last'],
-			dropShadow: ['hover', 'active']
 		}
 	}
 }

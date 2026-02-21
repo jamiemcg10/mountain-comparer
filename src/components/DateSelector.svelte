@@ -12,7 +12,7 @@
 	Date
 	<select
 		bind:value={reportDate}
-		class="bg-white shadow-sm text-gray-default block rounded cursor-pointer focus:outline-blue"
+		class="bg-white shadow-sm text-gray-default block rounded cursor-pointer focus:outline-blue font-normal"
 		on:change
 	>
 		{#each dates as date}
