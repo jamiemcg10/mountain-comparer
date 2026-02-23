@@ -26,7 +26,7 @@
 	addEmptyBox()
 </script>
 
-<div class="h-full flex gap-x-4">
+<div class="max-[480px]:flex-col w-full h-full flex gap-x-4">
 	<div class="grow">
 		<div class="flex justify-between flex-wrap shadow-xs">
 			<DateSelector bind:reportDate on:change={resetPage} />
