@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte'
 	import MountainForm from './MountainForm.svelte'
 	import MountainResults from './MountainResults.svelte'
-	import CloseButton from '../components/CloseButton.svelte'
+	import CloseButton from '$components/CloseButton.svelte'
 	import { getWeather } from '$utils/getWeather'
 	import type { DayWeather } from '$utils/types/DayWeather'
 	import { passMountains } from '$utils/passMountains'

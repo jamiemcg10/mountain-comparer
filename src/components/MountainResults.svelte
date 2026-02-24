@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { DayWeather } from '$utils/types/DayWeather'
-	import ReportIcon from '../components/ReportIcon.svelte'
+	import ReportIcon from '$components/ReportIcon.svelte'
 	import clsx from 'clsx'
 	import MountainIcon from './MountainIcon.svelte'
 

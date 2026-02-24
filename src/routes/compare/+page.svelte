@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { tick } from 'svelte'
-	import MountainBox from '../../components/MountainBox.svelte'
-	import ChatBox from '../../components/ChatBox.svelte'
-	import Button from '../../components/Button.svelte'
-	import PassSelector from '../../components/PassSelector.svelte'
-	import DateSelector from '../../components/DateSelector.svelte'
+	import MountainBox from '$components/MountainBox.svelte'
+	import ChatBox from '$components/ChatBox.svelte'
+	import Button from '$components/Button.svelte'
+	import PassSelector from '$components/PassSelector.svelte'
+	import DateSelector from '$components/DateSelector.svelte'
 
 	let passes: Set<'Epic' | 'Ikon'> = new Set(['Epic'])
 	let mountains = []

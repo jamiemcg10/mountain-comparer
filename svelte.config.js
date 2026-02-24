@@ -11,7 +11,8 @@ const config = {
 		// hydrate the <div id="svelte"> element in src/app.html
 		adapter: vercel(),
 		alias: {
-			'$utils/*': 'src/utils/*'
+			'$utils/*': 'src/utils/*',
+			'$components/*': 'src/components/*'
 		}
 	},
 	vite: {

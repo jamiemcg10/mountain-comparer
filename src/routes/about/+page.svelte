@@ -1,6 +1,6 @@
 <script lang="ts">
-	import MountainIcon from '../../components/MountainIcon.svelte'
-	import ReportIcon from '../../components/ReportIcon.svelte'
+	import MountainIcon from '$components/MountainIcon.svelte'
+	import ReportIcon from '$components/ReportIcon.svelte'
 	const directions = [
 		'Select a region of the country',
 		'Select a mountain',
