@@ -33,7 +33,10 @@
 				messages = [...messages, t]
 				await scroll()
 			})
-			.catch()
+			.catch((e) => {
+				console.error({ e })
+				error = true
+			})
 			.finally(() => (thinking = false))
 
 		chatInput = ''
@@ -45,6 +48,7 @@
 	let messageContainerEl: HTMLDivElement
 	let showChat = false
 	let thinking = false
+	let error = false
 
 	$: chatInput = ''
 </script>
@@ -99,7 +103,16 @@
 						}
 					}}
 				/>
-				<Button class="block ml-auto" on:click={handleChatMessage}>Send</Button>
+				<div class="flex items-center">
+					{#if error}
+						<div class="text-xs text-[red]">
+							Sorry, an error occured. Please try again later.
+						</div>
+					{/if}
+					<Button class="block ml-auto" on:click={handleChatMessage}
+						>Send</Button
+					>
+				</div>
 			</div>
 		</div>
 	{/if}
