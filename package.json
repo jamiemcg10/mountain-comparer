@@ -37,6 +37,8 @@
 	"type": "module",
 	"dependencies": {
 		"@genkit-ai/google-genai": "^1.29.0",
-		"genkit": "^1.28.0"
+		"dompurify": "^3.3.1",
+		"genkit": "^1.28.0",
+		"markdown-it": "^14.1.1"
 	}
 }

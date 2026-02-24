@@ -5,6 +5,8 @@
 	import ThinkingMessage from './ThinkingMessage.svelte'
 	import ShowChatButton from './ShowChatButton.svelte'
 	import clsx from 'clsx'
+	import markdownit from 'markdown-it'
+	import DOMPurify from 'dompurify'
 
 	function handleChatMessage() {
 		messages = [...messages, chatInput]
@@ -25,6 +27,8 @@
 
 		chatInput = ''
 	}
+
+	const md = markdownit()
 
 	let messages = [
 		'Hey whats up?',
@@ -63,10 +67,11 @@
 			>
 				<div class="block place-content-end space-y-2 overflow-y-auto pr-2">
 					{#each messages as msg}
+						{@const mdMsg = DOMPurify.sanitize(md.render(msg))}
 						<div
 							class="w-4/5 odd:bg-blue-secondary even:bg-blue-primary text-light odd:place-self-end p-2 text-sm rounded-md"
 						>
-							{msg}
+							{@html mdMsg}
 						</div>
 					{/each}
 					{#if thinking}
