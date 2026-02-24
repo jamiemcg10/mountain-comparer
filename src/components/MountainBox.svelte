@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
 	import MountainForm from './MountainForm.svelte'
 	import MountainResults from './MountainResults.svelte'
 	import CloseButton from '$components/CloseButton.svelte'
@@ -12,8 +11,6 @@
 	export let date: Date
 	export let id: number
 
-	const dispatch = createEventDispatcher<{ close: string }>()
-
 	let dataLoaded = false
 	let weather: DayWeather
 	let mountain: string
@@ -25,20 +22,8 @@
 	transition:slide={{ duration: 200 }}
 	class="relative m-auto shadow-xs my-3 sm:my-2 p-2 w-[85%] sm:w-full min-w-70 h-24 bg-gray-200 bg-opacity-70 hover:bg-opacity-90 transition duration-200 rounded-md"
 >
-	<div
-		role="button"
-		aria-label="close"
-		tabindex="0"
-		class="relative z-10 block float-right w-3.5"
-		on:keyup={({ key }) => {
-			if (key === 'Enter') dispatch('close')
-		}}
-		on:click={() => {
-			dispatch('close')
-		}}
-	>
-		<CloseButton />
-	</div>
+	<CloseButton class="relative z-10 block float-right w-3.5" on:close />
+
 	{#if !dataLoaded}
 		<MountainForm
 			{id}
