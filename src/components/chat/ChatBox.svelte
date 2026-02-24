@@ -58,7 +58,7 @@
 	{#if showChat}
 		<div
 			transition:scale={{ duration: 500 }}
-			use:clickOutside={showChat}
+			use:clickOutside
 			on:clickOutside={() => (showChat = false)}
 			class={clsx(
 				'h-150 w-90 shrink-0 z-10 border-2 border-[gray] p-2 overflow-y-hidden rounded-md flex flex-col justify-between bg-gray-200 bg-opacity-60',
