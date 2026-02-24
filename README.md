@@ -22,7 +22,7 @@ _Jamie Smart 2021_
 Environment variables needed. Update `.env.template` with these and rename the file to `.env`:
 
 1. `APIKEY` for OpenWeather
-2. `GEMINI_API_KEY` for Google Gemini API
+2. `GEMINI_API_KEY` for Google Gemini API connected to Firebase account.
 
 <hr>
 <br />
