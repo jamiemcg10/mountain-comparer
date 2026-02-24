@@ -7,20 +7,30 @@
 	import clsx from 'clsx'
 	import markdownit from 'markdown-it'
 	import DOMPurify from 'dompurify'
+	import { tick } from 'svelte'
 
-	function handleChatMessage() {
+	async function handleChatMessage() {
 		messages = [...messages, chatInput]
+		await tick()
+		messageContainerEl.lastElementChild.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		})
+
 		setTimeout(() => {
 			thinking = true
 		}, 300)
 
 		fetch('../api/chat', { method: 'POST', body: JSON.stringify(chatInput) })
 			.then(async (r) => {
-				console.log({ r })
 				const t = await r.text()
-				console.log({ t })
+
 				messages = [...messages, t]
-				messagesEl.scroll(0, messagesEl.clientHeight)
+				await tick()
+				messageContainerEl.lastElementChild.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				})
 			})
 			.catch()
 			.finally(() => (thinking = false))
@@ -30,13 +40,8 @@
 
 	const md = markdownit()
 
-	let messages = [
-		'Hey whats up?',
-		'Awesome, an Ikon pass in Vermont gives you some great options! To help me narrow it down, tell me: 1. **Whats your skill level?** (Beginner, intermediate, advanced, expert?) 2. **What kind of skiing or snowboarding do you love to do?** (Cruisy groomers, trees, moguls, park, etc.) 3. **Are you looking to go soon? Any specific dates or just generally "good weather" for Vermont?**',
-		'Okay, but what should I do after?',
-		'To help me narrow it down, tell me: 1. **Whats your skill level?** (Beginner, intermediate, advanced, expert?) 2. **What kind of skiing or snowboarding do you love to do?** (Cruisy groomers, trees, moguls, park, etc.) 3. **Are you looking to go soon? Any specific dates or just generally "good weather" for Vermont?**'
-	] // []
-	let messagesEl: HTMLDivElement
+	let messages = []
+	let messageContainerEl: HTMLDivElement
 	let showChat = false
 	let thinking = false
 
@@ -63,9 +68,11 @@
 			</div>
 			<div
 				class="flex flex-col grow place-content-end gap-y-2 overflow-y-hidden"
-				bind:this={messagesEl}
 			>
-				<div class="block place-content-end space-y-2 overflow-y-auto pr-2">
+				<div
+					class="block place-content-end space-y-2 overflow-y-auto pr-2"
+					bind:this={messageContainerEl}
+				>
 					{#each messages as msg}
 						{@const mdMsg = DOMPurify.sanitize(md.render(msg))}
 						<div
