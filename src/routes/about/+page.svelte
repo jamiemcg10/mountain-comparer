@@ -33,7 +33,7 @@
 		</div>
 		<p class="inline">icon to see that mountain's trail status. Got it?</p>
 		<p class="inline-block absolute w-max ml-1.5 blue-link">
-			<a href="../compare/">Try it out!</a>
+			<a href="../guide/">Try it out!</a>
 		</p>
 	</div>
 	<div class="absolute bottom-1 text-xs">

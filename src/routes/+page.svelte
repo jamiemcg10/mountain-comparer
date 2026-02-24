@@ -8,7 +8,7 @@
 		Compare conditions at different mountains
 	</h3>
 	<div class="relative">
-		<p class="mb-2 blue-link h-6"><a href="compare/">Get started</a></p>
+		<p class="mb-2 blue-link h-6"><a href="guide/">Get started</a></p>
 	</div>
 	<div class="relative">
 		<p class="blue-link h-6"><a href="about/">How it works</a></p>
