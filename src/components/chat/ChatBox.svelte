@@ -26,12 +26,7 @@
 		chatInput = ''
 	}
 
-	let messages = [
-		'Hey whats up?',
-		'Awesome, an Ikon pass in Vermont gives you some great options! To help me narrow it down, tell me: 1. **Whats your skill level?** (Beginner, intermediate, advanced, expert?) 2. **What kind of skiing or snowboarding do you love to do?** (Cruisy groomers, trees, moguls, park, etc.) 3. **Are you looking to go soon? Any specific dates or just generally "good weather" for Vermont?**',
-		'Okay, but what should I do after?',
-		'To help me narrow it down, tell me: 1. **Whats your skill level?** (Beginner, intermediate, advanced, expert?) 2. **What kind of skiing or snowboarding do you love to do?** (Cruisy groomers, trees, moguls, park, etc.) 3. **Are you looking to go soon? Any specific dates or just generally "good weather" for Vermont?**'
-	] // []
+	let messages = []
 	let messagesEl: HTMLDivElement
 	let showChat = false
 	let thinking = false
@@ -76,6 +71,7 @@
 			</div>
 			<div>
 				<textarea
+					autofocus
 					class="w-full p-1 bg-white resize-none mt-2 rounded-xs"
 					bind:value={chatInput}
 					placeholder="Chat with the guide"
