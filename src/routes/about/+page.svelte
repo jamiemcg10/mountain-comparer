@@ -9,18 +9,16 @@
 	]
 </script>
 
-<div
-	class="center w-4/5 sm:w-full sm:h-full p-[10%] bg-white/80 sm:bg-white/50 rounded-md shadow-xs"
->
+<div class="center w-4/5 sm:w-full h-full p-[10%] bg-white/60 shadow-xs">
 	<div class="text">
 		<h3 id="title" class="text-h3 text-blue-primary">How it works</h3>
 		<p>
 			Compare the weather at different mountains on your pass. First, select the
 			date you want to look at and your pass. Then:
 		</p>
-		<ol class="pl-[20px] my-5">
+		<ol class="pl-6 my-5">
 			{#each directions as direction}
-				<li class="py-30 last:italic mb-[5px]">{direction}</li>
+				<li class="py-1 last:italic mb-1.25">{direction}</li>
 			{/each}
 		</ol>
 		<p class="inline-block">That's it! You can also click the</p>
@@ -37,6 +35,19 @@
 		<p class="inline-block absolute w-max ml-1.5 blue-link">
 			<a href="../compare/">Try it out!</a>
 		</p>
+	</div>
+	<div class="absolute bottom-1 text-xs">
+		<div>Credits:</div>
+		<a
+			href="https://www.flaticon.com/free-icons/rocky-mountains"
+			title="rocky mountains icons"
+			>Rocky mountains icons created by Pop Vectors - Flaticon</a
+		>
+		<a
+			href="https://www.flaticon.com/free-icons/adventure"
+			title="adventure icons"
+			>Adventure icons created by cah nggunung - Flaticon</a
+		>
 	</div>
 </div>
 

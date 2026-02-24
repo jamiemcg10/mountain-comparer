@@ -38,6 +38,7 @@
 			type="checkbox"
 			checked
 			class="cursor-pointer"
+			tabindex="-1"
 		/>
 		<label
 			for="pass-epic"
@@ -65,6 +66,7 @@
 			value="Ikon"
 			type="checkbox"
 			class="cursor-pointer"
+			tabindex="-1"
 		/>
 		<label
 			for="pass-ikon"

@@ -32,8 +32,9 @@
 		>
 	</div>
 	<select
+		id="mountain-{id}-mountain"
 		class={clsx(
-			'bg-white w-44 rounded-sm cursor-pointer focus:outline-blue',
+			'bg-white w-44 rounded-sm disabled:opacity-70 disabled:pointer-events-none',
 			!passes.size && 'cursor-not-allowed'
 		)}
 		aria-label="mountain"

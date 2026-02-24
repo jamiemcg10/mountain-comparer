@@ -11,41 +11,50 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}
+
+@theme {
+	--outline-blue: #366077;
 }
 
 @utility nav-div {
-  @media (pointer: fine) {
-    @apply hover:text-xl;
-  }
-  text-align: center;
-  position: relative;
-  width: 60px;
-  transition-duration: 200ms;
-  transition-property: all;
-  @apply text-white;
-  @apply active:text-lg;
-  @apply text-base;
+	@media (pointer: fine) {
+		@apply hover:text-xl;
+	}
+	text-align: center;
+	position: relative;
+	width: 60px;
+	transition-duration: 200ms;
+	transition-property: all;
+	@apply text-white;
+	@apply active:text-lg;
+	@apply text-base;
 }
 
 @utility nav-link {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 @layer base {
-  :root {
-    font-family: Nunito, sans-serif;
-    color: #666666;
-  }
+	:root {
+		font-family: Nunito, sans-serif;
+		color: #666666;
+	}
+
+	:focus-visible,
+	:focus {
+		outline-color: var(--outline-blue);
+	}
 }
 
 @layer base {

@@ -12,9 +12,9 @@
 		>
 	</div>
 	<select
-		id={`region${id}`}
+		id="mountain-{id}-region"
 		aria-label="region"
-		class="bg-white rounded-sm cursor-pointer focus:outline-blue"
+		class="bg-white rounded-sm cursor-pointer"
 		bind:value={region}
 	>
 		<option value="">Select region</option>

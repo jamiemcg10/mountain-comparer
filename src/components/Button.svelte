@@ -13,7 +13,7 @@
 		'active:bg-blue-primary active:text-gray-50',
 		disabled &&
 			'pointer-events-none cursor-not-allowed bg-gray-200 text-gray-400',
-		!disabled && 'shadow-all'
+		!disabled && 'shadow-all cursor-pointer'
 	)}
 	on:click
 >

@@ -26,9 +26,6 @@ module.exports = {
 				font: 'color',
 				scale: 'scale'
 			},
-			outline: {
-				blue: '.125rem solid #366077'
-			},
 			strokeWidth: {
 				1.5: '1.5',
 				4: '4'
