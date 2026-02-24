@@ -1,7 +1,7 @@
 <script lang="ts">
 	import clsx from 'clsx'
-	import { passMountains } from '../utils/passMountains'
-	import type { Pass, Region } from '../utils/types'
+	import { passMountains } from '$utils/passMountains'
+	import type { Pass, Region } from '$utils/types'
 
 	export let id: number
 	export let passes: Set<Pass>

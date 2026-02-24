@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Pass } from 'src/utils/types'
+	import type { Pass } from '$utils/types'
 
 	export let passes: Set<'Epic' | 'Ikon'>
 

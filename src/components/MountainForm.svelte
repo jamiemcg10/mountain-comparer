@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
 	import Button from './Button.svelte'
-	import type { Region, Pass } from '../utils/types'
+	import type { Region, Pass } from '$utils/types'
 	import RegionSelect from './RegionSelect.svelte'
 	import MountainSelect from './MountainSelect.svelte'
 

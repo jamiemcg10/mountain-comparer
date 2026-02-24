@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Region } from '../utils/types'
+	import type { Region } from '$utils/types'
 
 	export let region: Region
 	export let id: number
