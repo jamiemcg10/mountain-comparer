@@ -9,16 +9,21 @@
 	import DOMPurify from 'dompurify'
 	import { tick } from 'svelte'
 
-	async function handleChatMessage() {
-		messages = [...messages, chatInput]
+	async function scroll() {
 		await tick()
-		messageContainerEl.lastElementChild.scrollIntoView({
+		await messageContainerEl.lastElementChild.scrollIntoView({
 			behavior: 'smooth',
 			block: 'start'
 		})
+	}
 
-		setTimeout(() => {
+	async function handleChatMessage() {
+		messages = [...messages, chatInput]
+		scroll()
+
+		setTimeout(async () => {
 			thinking = true
+			await scroll()
 		}, 300)
 
 		fetch('../api/chat', { method: 'POST', body: JSON.stringify(chatInput) })
@@ -26,11 +31,7 @@
 				const t = await r.text()
 
 				messages = [...messages, t]
-				await tick()
-				messageContainerEl.lastElementChild.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				})
+				await scroll()
 			})
 			.catch()
 			.finally(() => (thinking = false))
