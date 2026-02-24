@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tick } from 'svelte'
 	import MountainBox from '$components/MountainBox.svelte'
-	import ChatBox from '$components/ChatBox.svelte'
+	import ChatBox from '$components/chat/ChatBox.svelte'
 	import Button from '$components/Button.svelte'
 	import PassSelector from '$components/PassSelector.svelte'
 	import DateSelector from '$components/DateSelector.svelte'
@@ -47,7 +47,7 @@
 			{/each}
 		</div>
 
-		<!-- remove button if 5 boxes on screen -->
+		<!-- hide button if 5 boxes on screen -->
 		<Button disabled={mountains.length >= 5} on:click={addEmptyBox}>
 			+ Add row
 		</Button>

@@ -17,7 +17,8 @@ module.exports = {
 				gray: '2px 2px 3px #999999'
 			},
 			textColor: {
-				'blue-primary': '#366077'
+				'blue-primary': '#366077',
+				light: '#d5d5d5'
 			},
 			transitionProperty: {
 				width: 'width',
