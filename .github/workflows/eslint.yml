@@ -33,5 +33,8 @@ jobs:
       - name: 'Install dependencies'
         uses: bahmutov/npm-install@v1
 
+      - name: 'Sync SvelteKit (Generates .svelte-kit folder)'
+        run: npx svelte-kit sync
+
       - name: 'Run svelte-check'
         run: npm run check
