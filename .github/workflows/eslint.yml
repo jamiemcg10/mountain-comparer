@@ -25,13 +25,16 @@ jobs:
       - name: 'Setup node'
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 18
+          node-version: 22
 
       - name: 'Install npm@latest'
         run: npm i -g npm@latest
 
       - name: 'Install dependencies'
         uses: bahmutov/npm-install@v1
+
+      - name: 'Sync SvelteKit (Generates .svelte-kit folder)'
+        run: npx svelte-kit sync
 
       - name: 'Run svelte-check'
         run: npm run check

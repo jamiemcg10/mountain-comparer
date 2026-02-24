@@ -6,7 +6,7 @@
 		<a class="nav-link" href="../about/">About</a>
 	</div>
 	<div class="ml-5 nav-div">
-		<a class="nav-link" href="../compare/">Compare</a>
+		<a class="nav-link" href="../guide/">Guide</a>
 	</div>
 	<br />
 </div>

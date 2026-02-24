@@ -1,9 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-	mode: 'jit',
-	purge: ['./src/**/*.{svelte,css,html}'],
-	darkMode: false,
+	content: ['./src/**/*.{svelte,css,html}'],
 	theme: {
 		screens: {
 			xs: { max: '400px' },
@@ -19,7 +17,8 @@ module.exports = {
 				gray: '2px 2px 3px #999999'
 			},
 			textColor: {
-				'blue-primary': '#366077'
+				'blue-primary': '#366077',
+				light: '#d5d5d5'
 			},
 			transitionProperty: {
 				width: 'width',
@@ -27,9 +26,6 @@ module.exports = {
 				fontSize: 'font-size',
 				font: 'color',
 				scale: 'scale'
-			},
-			outline: {
-				blue: '.125rem solid #366077'
 			},
 			strokeWidth: {
 				1.5: '1.5',
@@ -39,12 +35,6 @@ module.exports = {
 				touch: { raw: '(pointer: coarse)' },
 				pointer: { raw: '(pointer: fine)' }
 			}
-		}
-	},
-	variants: {
-		extend: {
-			fontStyle: ['last'],
-			dropShadow: ['hover', 'active']
 		}
 	}
 }
