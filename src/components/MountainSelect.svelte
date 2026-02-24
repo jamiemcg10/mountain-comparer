@@ -8,6 +8,7 @@
 	export let region: Region
 	export let mountain: string
 
+	//	TODO: streamline this
 	function getFilteredMountains(passes: Set<Pass>, region: Region) {
 		const filteredMountains = Object.entries(passMountains).filter(
 			([_, details]) => {
