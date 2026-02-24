@@ -21,7 +21,7 @@
 </script>
 
 <div
-	class="relative m-auto shadow-xs my-3 sm:my-2 p-2 w-[85%] sm:w-full min-w-[280px] h-24 bg-gray-200 bg-opacity-70 hover:bg-opacity-90 transition duration-200 rounded-md"
+	class="relative m-auto shadow-xs my-3 sm:my-2 p-2 w-[85%] sm:w-full min-w-70 h-24 bg-gray-200 bg-opacity-70 hover:bg-opacity-90 transition duration-200 rounded-md"
 >
 	<div
 		role="button"
