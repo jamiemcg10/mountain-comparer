@@ -3,7 +3,7 @@
 	xmlns="http://www.w3.org/2000/svg"
 	stroke-linecap="round"
 	stroke-width="1"
-	class="h-full hover:scale-125 active: scale-110 transition-all duration-200 filter drop-shadow-gray-sm"
+	class="h-full hover:scale-125 active: scale-110 transition-all duration-200 filter drop-shadow-gray-sm cursor-pointer"
 >
 	<line x1="2" y1="8" x2="8" y2="2" stroke="#666666" />
 	<line x1="8" y1="8" x2="2" y2="2" stroke="#666666" />
