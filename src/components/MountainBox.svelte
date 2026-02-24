@@ -6,6 +6,7 @@
 	import { getWeather } from '$utils/getWeather'
 	import type { DayWeather } from '$utils/types/DayWeather'
 	import { passMountains } from '$utils/passMountains'
+	import { slide } from 'svelte/transition'
 
 	export let passes: Set<'Epic' | 'Ikon'>
 	export let date: Date
@@ -21,6 +22,7 @@
 </script>
 
 <div
+	transition:slide={{ duration: 200 }}
 	class="relative m-auto shadow-xs my-3 sm:my-2 p-2 w-[85%] sm:w-full min-w-70 h-24 bg-gray-200 bg-opacity-70 hover:bg-opacity-90 transition duration-200 rounded-md"
 >
 	<div
