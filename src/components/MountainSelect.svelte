@@ -8,8 +8,8 @@
 	export let region: Region
 	export let mountain: string
 
-	//	TODO: streamline this
 	function getFilteredMountains(passes: Set<Pass>, region: Region) {
+		// this filteredMountains format allows for ease of getting info for on:formSubmitted in MountainForm
 		const filteredMountains = Object.entries(passMountains).filter(
 			([_, details]) => {
 				return passes.has(details.pass) && details.region === region
