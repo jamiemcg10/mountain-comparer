@@ -58,26 +58,6 @@
 }
 
 @layer base {
-	.text-h1 {
-		font-size: 4em;
-		font-weight: bold;
-	}
-
-	.text-h2 {
-		font-size: 3.5em;
-		font-weight: bold;
-	}
-
-	.text-h3 {
-		font-size: 2em;
-		font-weight: bold;
-	}
-
-	.text-h4 {
-		font-size: 1.5em;
-		font-weight: bold;
-	}
-
 	.h-fit {
 		height: fit-content;
 	}

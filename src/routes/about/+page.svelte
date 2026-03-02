@@ -10,8 +10,13 @@
 </script>
 
 <div class="center w-4/5 sm:w-full h-full p-[10%] bg-white/60 shadow-xs">
+	<div class="font-bold text-h3 text-blue-primary leading-20 sm:leading-14">
+		Mountain Guide
+	</div>
 	<div class="text">
-		<h3 id="title" class="text-h3 text-blue-primary">How it works</h3>
+		<div id="title" class="font-bold text-h4 text-blue-primary mb-2">
+			How it works
+		</div>
 		<p>
 			Compare the weather at different mountains on your pass. First, select the
 			date you want to look at and your pass. Then:
@@ -36,13 +41,8 @@
 			<a href="../guide/">Try it out!</a>
 		</p>
 	</div>
-	<div class="absolute bottom-1 text-xs">
+	<div class="absolute bottom-2 text-xs">
 		<div>Credits:</div>
-		<a
-			href="https://www.flaticon.com/free-icons/rocky-mountains"
-			title="rocky mountains icons"
-			>Rocky mountains icons created by Pop Vectors - Flaticon</a
-		>
 		<a
 			href="https://www.flaticon.com/free-icons/adventure"
 			title="adventure icons"

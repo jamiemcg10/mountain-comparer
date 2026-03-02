@@ -8,6 +8,12 @@ module.exports = {
 			sm: { max: '640px' }
 		},
 		extend: {
+			fontSize: {
+				h1: '4em',
+				h2: '3.5em',
+				h3: '2em',
+				h4: '1.5em'
+			},
 			backgroundColor: {
 				'blue-primary': '#366077',
 				'blue-secondary': '#1e3a4a'
